@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.HomeActivity"
             android:theme="@style/Theme.TestWeatherApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

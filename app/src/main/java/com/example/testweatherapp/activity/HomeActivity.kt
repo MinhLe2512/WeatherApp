@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.view_pager_main_row.view.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private inner class ViewPagerMainAdapter(private var list: List<Int>) : PagerAdapter() {
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            val view = View.inflate(this@MainActivity, R.layout.view_pager_main_row, null)
+            val view = View.inflate(this@HomeActivity, R.layout.view_pager_main_row, null)
             view.img_test.setImageResource(list[position])
             container.addView(view)
             return view
