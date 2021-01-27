@@ -1,5 +1,6 @@
 package com.example.testweatherapp.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,18 +13,22 @@ import com.example.testweatherapp.R
 import com.example.testweatherapp.subfragment.SettingsFragment
 import com.example.testweatherapp.subfragment.WidgetsFragment
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.view_pager_main_row.view.*
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
         val pagerAdapter = ViewPagerMainAdapter(listSth)
         view_pager_main.adapter = pagerAdapter
 
+        floating_btn.setOnClickListener {
+            val intent = Intent(this,  SearchActivity::class.java)
+            startActivity(intent)
+        }
         setUpActionBar()
     }
 
@@ -82,9 +87,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.settings -> supportFragmentManager.beginTransaction()
+            R.id.settings -> supportFragmentManager.beginTransaction().addToBackStack(null)
                 .replace(R.id.fragment_container, SettingsFragment()).commit()
-            R.id.widgets -> supportFragmentManager.beginTransaction()
+            R.id.widgets -> supportFragmentManager.beginTransaction().addToBackStack(null)
                 .replace(R.id.fragment_container, WidgetsFragment()).commit()
             else -> {
                 return false
