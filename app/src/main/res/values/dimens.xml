@@ -7,7 +7,6 @@
     <dimen name="spacing_larger">36dp</dimen>
     <dimen name="spacing_huge">48dp</dimen>
 
-
     <!-- Global font size data -->
     <dimen name="font_smallest">10sp</dimen>
     <dimen name="font_small">12sp</dimen>

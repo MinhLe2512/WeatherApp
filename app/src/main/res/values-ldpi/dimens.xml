@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_tiny_ldpi">4.5dp</dimen>
+    <dimen name="spacing_small_ldpi">7.5dp</dimen>
+    <dimen name="spacing_normal_ldpi">12dp</dimen>
+    <dimen name="spacing_large_ldpi">19.5dp</dimen>
+    <dimen name="spacing_larger_ldpi">27dp</dimen>
+    <dimen name="spacing_huge_ldpi">36dp</dimen>
+
+    <!-- Global font size data -->
+    <dimen name="font_smallest_ldpi">7.5sp</dimen>
+    <dimen name="font_small_ldpi">9sp</dimen>
+    <dimen name="font_normal_ldpi">10.5sp</dimen>
+    <dimen name="font_large_ldpi">13.5sp</dimen>
+    <dimen name="font_larger_ldpi">16.5sp</dimen>
+    <dimen name="font_largest_ldpi">19.5sp</dimen>
+    <dimen name="font_huge_ldpi">31.5sp</dimen>
+</resources>
