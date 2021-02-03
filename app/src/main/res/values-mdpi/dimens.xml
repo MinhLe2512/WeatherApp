@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="spacing_tiny_mdpi">6dp</dimen>
-    <dimen name="spacing_small_mdpi">10dp</dimen>
-    <dimen name="spacing_normal_mdpi">16dp</dimen>
-    <dimen name="spacing_large_mdpi">26dp</dimen>
-    <dimen name="spacing_larger_mdpi">36dp</dimen>
-    <dimen name="spacing_huge_mdpi">48dp</dimen>
-
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_normal">10dp</dimen>
+    <dimen name="spacing_large">18dp</dimen>
+    <dimen name="spacing_larger">26dp</dimen>
+    <dimen name="spacing_huge">36dp</dimen>
     <!-- Global font size data -->
-    <dimen name="font_smallest_mdpi">10sp</dimen>
-    <dimen name="font_small_mdpi">12sp</dimen>
-    <dimen name="font_normal_mdpi">14sp</dimen>
-    <dimen name="font_large_mdpi">18sp</dimen>
-    <dimen name="font_larger_mdpi">22sp</dimen>
-    <dimen name="font_largest_mdpi">26sp</dimen>
-    <dimen name="font_huge_mdpi">42sp</dimen>
+    <dimen name="font_smallest">4sp</dimen>
+    <dimen name="font_small">6sp</dimen>
+    <dimen name="font_normal">8sp</dimen>
+    <dimen name="font_large">10sp</dimen>
+    <dimen name="font_larger">14sp</dimen>
+    <dimen name="font_largest">18sp</dimen>
+    <dimen name="font_huge">30sp</dimen>
 </resources>

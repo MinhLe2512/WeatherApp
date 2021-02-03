@@ -1,11 +1,13 @@
 package com.example.testweatherapp.activity
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.viewpager.widget.PagerAdapter
@@ -26,11 +28,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         view_pager_main.adapter = pagerAdapter
 
         floating_btn.setOnClickListener {
-            val intent = Intent(this,  SearchActivity::class.java)
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
         setUpActionBar()
     }
+
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this@HomeActivity, data!!.getStringExtra("city"), Toast.LENGTH_SHORT)
+        }
+    }*/
 
     private var listSth =
         listOf(R.drawable.ic_search, R.drawable.ic_settings, R.drawable.ic_widgets)
