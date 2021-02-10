@@ -8,5 +8,5 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/str_settings"
-        android:textSize="30sp" />
+        android:textSize="@dimen/font_large" />
 </RelativeLayout>

@@ -9,4 +9,5 @@
     <string name="str_widgets">Widgets</string>
     <string name="str_communicate">Communicate</string>
     <string name="str_search">Search</string>
+    <string name="str_hint_search">Try searching for a different city, zip code or point of interest</string>
 </resources>

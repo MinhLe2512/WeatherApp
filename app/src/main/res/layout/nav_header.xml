@@ -5,16 +5,17 @@
     android:layout_height="wrap_content"
     android:background="@color/purple_200"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/spacing_normal">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/ic_launcher_round" />
+        android:background="@mipmap/ic_launcher_round"
+        android:contentDescription="@string/app_name"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test_txt" />
+        android:text="@string/str_help" />
 
 </LinearLayout>
