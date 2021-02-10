@@ -5,67 +5,94 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.viewpager.widget.PagerAdapter
+import androidx.fragment.app.*
 import com.example.testweatherapp.R
+import com.example.testweatherapp.`class`.OneDayDailyForecasts
+import com.example.testweatherapp.`interface`.AccuWeather
 import com.example.testweatherapp.subfragment.SettingsFragment
+import com.example.testweatherapp.subfragment.WeatherFragment
 import com.example.testweatherapp.subfragment.WidgetsFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.view_pager_main_row.view.*
+import kotlinx.android.synthetic.main.fragments_weather.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
+import kotlin.math.max
+
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private val requestCode: Int = 200
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val pagerAdapter = ViewPagerMainAdapter(listSth)
+        val pagerAdapter = ViewPagerMainAdapter(supportFragmentManager, listSth)
         view_pager_main.adapter = pagerAdapter
 
         floating_btn.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, requestCode)
         }
         setUpActionBar()
     }
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    private var listSth = listOf(SettingsFragment(), WidgetsFragment(), WeatherFragment())
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Toast.makeText(this@HomeActivity, data!!.getStringExtra("city"), Toast.LENGTH_SHORT)
+        if (requestCode == requestCode && resultCode == Activity.RESULT_OK) {
+            val key = data?.getStringExtra("city_key")
+            setUpOneDayForeCasts(key)
         }
-    }*/
-
-    private var listSth =
-        listOf(R.drawable.ic_search, R.drawable.ic_settings, R.drawable.ic_widgets)
-
-    private fun setUpViewPagerMain() {
     }
 
-    private inner class ViewPagerMainAdapter(private var list: List<Int>) : PagerAdapter() {
-        override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            val view = View.inflate(this@HomeActivity, R.layout.view_pager_main_row, null)
-            view.img_test.setImageResource(list[position])
-            container.addView(view)
-            return view
-        }
+    private fun setUpOneDayForeCasts(locationKey: String?) {
+        val retrofit =
+            Retrofit.Builder().baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create())
+                .build()
+        val service = retrofit.create(AccuWeather::class.java)
+        val callback =
+            service.getForecasts1Day(locationKey, apiKey, language, "true", "false").enqueue(
+                object : Callback<OneDayDailyForecasts> {
+                    override fun onFailure(call: Call<OneDayDailyForecasts>, t: Throwable) {
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "Unable to find location",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
 
-        override fun isViewFromObject(view: View, `object`: Any): Boolean {
-            return view == `object`
-        }
+                    override fun onResponse(
+                        call: Call<OneDayDailyForecasts>,
+                        response: Response<OneDayDailyForecasts>
+                    ) {
+                        if (response.code() == 200) {
+                            val oneDayDailyForecasts = response.body()
+                            minimum_degree.text = oneDayDailyForecasts!!.headLine.text.toString()
+                        }
+                    }
+                }
+            )
+    }
 
+    private inner class ViewPagerMainAdapter(
+        private var fragmentManager: FragmentManager,
+        private var list: List<Fragment>
+    ) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getCount(): Int {
             return list.size
         }
 
-        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-            val view = `object` as View
-            container.removeView(view)
+        override fun getItem(position: Int): Fragment {
+            return list[position]
         }
     }
 

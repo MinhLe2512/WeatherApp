@@ -1,10 +1,11 @@
 package com.example.testweatherapp.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
@@ -14,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testweatherapp.R
 import com.example.testweatherapp.`class`.City
 import com.example.testweatherapp.`interface`.AccuWeather
+import com.example.testweatherapp.`interface`.ItemClickListener
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.recycler_view_search_result.*
 import kotlinx.android.synthetic.main.recycler_view_search_result.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,7 +28,7 @@ const val baseURL = "https://dataservice.accuweather.com/"
 const val apiKey = "CzawK6VvXPdqs9ALeioQbWz2guTHF1wz"
 const val language = "en-US"
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -44,14 +45,14 @@ class SearchActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                setUpRetroFit(newText!!)
+                setUpLocationRequest(newText!!)
                 return true
             }
         })
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun setUpRetroFit(searchString: String) {
+    private fun setUpLocationRequest(searchString: String) {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -68,7 +69,8 @@ class SearchActivity : AppCompatActivity() {
                     val listCities = response.body()
                     if (listCities.isNullOrEmpty())
                         return
-                    rc_view_search_location.adapter = SearchBarAdapter(listCities)
+                    rc_view_search_location.adapter =
+                        SearchBarAdapter(listCities, this@SearchActivity)
                     rc_view_search_location.layoutManager = LinearLayoutManager(this@SearchActivity)
                 }
             }
@@ -77,7 +79,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     inner class SearchBarAdapter(
-        private val listOfCities: List<City>
+        private val listOfCities: List<City>,
+        private val itemClickListener: ItemClickListener
     ) :
         RecyclerView.Adapter<SearchBarAdapter.ViewHolder>() {
 
@@ -97,10 +100,18 @@ class SearchActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.cityName.text = listOfCities[position].LocalizedName.toString()
-            holder.itemView.setOnClickListener {
-
+            holder.itemView.setOnClickListener{
+                itemClickListener.onItemClicked(listOfCities[position])
             }
         }
 
+
+    }
+
+    override fun onItemClicked(city: City) {
+        Toast.makeText(this@SearchActivity, city.LocalizedName, Toast.LENGTH_SHORT).show()
+        val returnIntent = Intent().putExtra("city_key", city.Key)
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish();
     }
 }
