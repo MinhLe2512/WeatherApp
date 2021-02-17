@@ -3,8 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/txt_view_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal"
+        android:text="Testing"
+        android:textSize="@dimen/font_larger" />
+
     <ImageView
-        android:id="@+id/img_test"
+        android:id="@+id/img_test_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

@@ -1,6 +1,7 @@
 package com.example.testweatherapp.`class`
 
 import com.google.gson.annotations.SerializedName
+import java.math.BigInteger
 
 class OneDayDailyForecasts(
     @SerializedName("Headline")
@@ -12,9 +13,9 @@ class OneDayDailyForecasts(
         @SerializedName("EffectiveDate")
         val effectiveDate: String? = null,
         @SerializedName("EffectiveEpochDate")
-        val effectiveEpochDate: Int = 0,
+        val effectiveEpochDate: Long? = 0,
         @SerializedName("Severity")
-        val severity: Int = 0,
+        val severity: Long? = 0,
         @SerializedName("Text")
         val text: String? = null,
         @SerializedName("Category")
@@ -33,7 +34,7 @@ class OneDayDailyForecasts(
         @SerializedName("Date")
         val date: String? = null,
         @SerializedName("EpochDate")
-        val epochDate: Int? = 0,
+        val epochDate: Long? = 0,
         @SerializedName("Sources")
         val sources: List<String>,
         @SerializedName("Temperature")

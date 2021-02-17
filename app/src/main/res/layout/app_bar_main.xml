@@ -9,7 +9,7 @@
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@color/red"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/Theme.AppCompat.Light" />
@@ -26,12 +26,12 @@
             android:contentDescription="@string/str_search"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/spacing_normal"
-            android:id="@+id/floating_btn"/>
+            android:id="@+id/floating_btn" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </FrameLayout>
 </LinearLayout>
 

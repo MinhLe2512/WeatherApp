@@ -24,6 +24,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 const val baseURL = "https://dataservice.accuweather.com/"
 const val apiKey = "CzawK6VvXPdqs9ALeioQbWz2guTHF1wz"
 const val language = "en-US"

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_red">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/minimum_degree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-black"
+            android:shadowColor="@color/black"
+            android:shadowDx="20"
+            android:shadowDy="20"
+            android:shadowRadius="1"
+            android:text="@string/default_number"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="100dp" />
+
+        <TextView
+            android:id="@+id/maximum_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/minimum_degree"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:padding="@dimen/spacing_normal"
+            android:shadowColor="@color/red"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="1"
+            android:text="@string/default_number"
+            android:textColor="@color/white"
+            android:textSize="50dp" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/maximum_degree"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/real_feel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="1"
+                android:text="@string/real_feel"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+            <TextView
+                android:id="@+id/real_feel_shade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="1"
+                android:text="@string/real_feel_shade"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/temp_real_feel_minimum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="center"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/temp_real_feel_shade_minimum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="center"
+                android:textSize="40sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_2">
+
+            <TextView
+                android:id="@+id/temp_real_feel_maximum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/temp_real_feel_shade_maximum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_3"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_large">
+
+            <TextView
+                android:id="@+id/txt_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:text="@string/note"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/red"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -10,4 +10,8 @@
     <string name="str_communicate">Communicate</string>
     <string name="str_search">Search</string>
     <string name="str_hint_search">Try searching for a different city, zip code or point of interest</string>
+    <string name="real_feel">Real feel</string>
+    <string name="real_feel_shade">Real feel shade</string>
+    <string name="default_number">N/A</string>
+    <string name="note">Notes:</string>
 </resources>
