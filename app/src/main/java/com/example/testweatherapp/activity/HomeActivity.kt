@@ -11,12 +11,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import com.example.testweatherapp.R
 import com.example.testweatherapp.`class`.OneDayDailyForecasts
 import com.example.testweatherapp.`interface`.AccuWeather
+import com.example.testweatherapp.subfragment.DegreeFragment
 import com.example.testweatherapp.subfragment.SettingsFragment
 import com.example.testweatherapp.subfragment.WidgetsFragment
 import com.google.android.material.navigation.NavigationView
@@ -39,22 +43,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val adapter = ViewPagerMainAdapter(listSth)
-        view_pager_main.adapter = adapter
-
         floating_btn.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivityForResult(intent, requestCode)
         }
         setUpActionBar()
-        rc_view_air_pollutant.adapter = AirPollutantRecycler(listTest)
-        rc_view_air_pollutant.layoutManager = LinearLayoutManager(this@HomeActivity)
+
     }
 
     private var listSth = listOf(
-        R.layout.layout_air_polluten,
-        R.layout.display_today_details,
-        R.layout.display_temperature
+        DegreeFragment(),
+        SettingsFragment(),
+        WidgetsFragment()
     )
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -64,24 +64,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setUpOneDayForeCasts(key)
         }
     }
-    private val obj1 = OneDayDailyForecasts.DailyForecasts.AirAndPollen(
-        "AirQuality",
-        67,
-        "Moderate",
-        2,
-        "Particle Pollution"
-    )
-    private val obj2 = OneDayDailyForecasts.DailyForecasts.AirAndPollen(
-        "Grass",
-        0,
-        "Low",
-        1,
-        "Test"
-    )
-    private val listTest: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen> =
-        listOf(
-            obj1, obj2
-        )
 
     private fun setUpOneDayForeCasts(locationKey: String?) {
         val retrofit =
@@ -107,49 +89,27 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         if (response.code() == 200) {
                             val oneDayDailyForecasts = response.body()
                             oneDayDailyForecasts!!.dailyForecasts.forEach {
-                                setUpDailyForeCasts(
+                                val adapter = ViewPagerMainAdapter(
+                                    listSth,
+                                    supportFragmentManager,
                                     it.temperature.minimum.value.toString(),
                                     it.temperature.maximum.value.toString(),
                                     it.rfTemperature.minimum.value.toString(),
                                     it.rfTemperature.maximum.value.toString(),
                                     it.rftShade.minimum.value.toString(),
                                     it.rftShade.maximum.value.toString(),
-                                    it.listOfAirAndPollen
+                                    oneDayDailyForecasts.headLine.severity.toString(),
+                                    oneDayDailyForecasts.headLine.category.toString(),
+                                    oneDayDailyForecasts.headLine.text.toString()
                                 )
+                                view_pager_main.adapter = adapter
                             }
-                            setUpHeadlines(
-                                oneDayDailyForecasts.headLine.severity.toString(),
-                                oneDayDailyForecasts.headLine.category.toString(),
-                                oneDayDailyForecasts.headLine.text.toString()
-                            )
                         }
                     }
                 }
             )
     }
 
-    private fun setUpHeadlines(severity: String, category: String, text: String) {
-        note.text = text
-    }
-
-    private fun setUpDailyForeCasts(
-        temp_min: String,
-        temp_max: String,
-        real_feel_min: String,
-        real_feel_max: String,
-        real_feel_shade_min: String,
-        real_feel_shade_max: String,
-        listOfAirPollutant: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen>
-    ) {
-        minimum_degree.text = temp_min + "°"
-        maximum_degree.text = temp_max + "°"
-        temp_real_feel_minimum.text = real_feel_min + "°"
-        temp_real_feel_maximum.text = real_feel_max + "°"
-        temp_real_feel_shade_minimum.text = real_feel_shade_min + "°"
-        temp_real_feel_shade_maximum.text = real_feel_shade_max + "°"
-        rc_view_air_pollutant.adapter = AirPollutantRecycler(listOfAirPollutant)
-        rc_view_air_pollutant.layoutManager = LinearLayoutManager(this@HomeActivity)
-    }
 
     inner class AirPollutantRecycler(private val listAirPollutant: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen>) :
         RecyclerView.Adapter<AirPollutantRecycler.ViewHolderAirPollutant>() {
@@ -182,31 +142,45 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     private inner class ViewPagerMainAdapter(
-        private var listLayouts: List<Int>
-    ) : PagerAdapter() {
-        override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            val view1 = layoutInflater.inflate(R.layout.display_temperature, container, false)
-            val view2 = layoutInflater.inflate(R.layout.display_today_details, container, false)
-            val view3 =
-                layoutInflater.inflate(R.layout.layout_air_polluten, container, false)
-            val viewArr = listOf<View>(view1, view2, view3)
-            container.addView(viewArr[position])
-            return viewArr[position]
-        }
-
-        override fun isViewFromObject(view: View, `object`: Any): Boolean {
-            return view == `object`
+        private var listlayouts: List<Fragment>,
+        private var fragmentManager: FragmentManager,
+        private var temp_min: String,
+        private var temp_max: String,
+        private var real_feel_min: String,
+        private var real_feel_max: String,
+        private var real_feel_shade_min: String,
+        private var real_feel_shade_max: String,
+        private var severity: String,
+        private var category: String,
+        private var text: String
+    ) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+        override fun getItem(position: Int): Fragment {
+            when (position) {
+                0 -> return DegreeFragment().newInstance(
+                    temp_min,
+                    temp_max,
+                    real_feel_min,
+                    real_feel_max,
+                    real_feel_shade_min,
+                    real_feel_shade_max,
+                    severity,
+                    category,
+                    text
+                )
+                1 -> return listlayouts[position]
+                2 -> return listlayouts[position]
+                else -> {
+                    return listlayouts[0]
+                }
+            }
         }
 
         override fun getCount(): Int {
-            return listLayouts.size
+            return listlayouts.size
         }
 
-        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-            val obj = `object` as View
-            container.removeView(obj)
-        }
     }
+
 
     private fun setUpActionBar() {
         setSupportActionBar(tool_bar)
