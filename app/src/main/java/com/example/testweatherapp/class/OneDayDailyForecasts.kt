@@ -1,6 +1,8 @@
 package com.example.testweatherapp.`class`
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import java.math.BigInteger
 
 class OneDayDailyForecasts(
@@ -60,7 +62,7 @@ class OneDayDailyForecasts(
         @SerializedName("DegreeDaySummary")
         val ddSummary: DegreeDaySummary,
         @SerializedName("AirAndPollen")
-        val listOfAirAndPollen: List<AirAndPollen>
+        val listOfAirAndPollen: ArrayList<AirAndPollen>
     ) {
         class Sun(
             @SerializedName("Rise")
@@ -188,6 +190,7 @@ class OneDayDailyForecasts(
             )
         }
 
+        @Parcelize
         class AirAndPollen(
             @SerializedName("Name")
             val name: String? = null,
@@ -199,7 +202,7 @@ class OneDayDailyForecasts(
             val categoryValue: Int? = 0,
             @SerializedName("Type")
             val type: String? = null
-        )
+        ) : Parcelable
 
         class Day(
             @SerializedName("Icon")

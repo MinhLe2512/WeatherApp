@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.testweatherapp.R
+import kotlinx.android.synthetic.main.display_temperature.*
 import kotlinx.android.synthetic.main.display_temperature.view.*
 
 class DegreeFragment : Fragment() {
@@ -34,6 +35,36 @@ class DegreeFragment : Fragment() {
         view.temp_real_feel_shade_maximum.text = trfsMax
         view.note.text = text
         return view
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (minDeg != null) {
+            outState.putString("temp_min", minDeg)
+            outState.putString("temp_max", maxDeg)
+            outState.putString("real_feel_min", trfMin)
+            outState.putString("real_feel_max", trfMax)
+            outState.putString("real_feel_shade_min", trfsMin)
+            outState.putString("real_feel_shade_max", trfsMax)
+            outState.putString("severity", severity)
+            outState.putString("category", category)
+            outState.putString("text", text)
+        }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        minDeg = savedInstanceState?.getString("temp_min")
+        maxDeg = savedInstanceState?.getString("temp_max")
+        trfMin = savedInstanceState?.getString("real_feel_min")
+        trfMax = savedInstanceState?.getString("real_feel_max")
+        trfsMin = savedInstanceState?.getString("real_feel_shade_min")
+        trfsMax = savedInstanceState?.getString("real_feel_shade_max")
+        severity = savedInstanceState?.getString("severity")
+        category = savedInstanceState?.getString("category")
+        text = savedInstanceState?.getString("text")
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

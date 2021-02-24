@@ -14,20 +14,17 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
 import com.example.testweatherapp.R
 import com.example.testweatherapp.`class`.OneDayDailyForecasts
 import com.example.testweatherapp.`interface`.AccuWeather
+import com.example.testweatherapp.subfragment.AirAndPollenFragment
 import com.example.testweatherapp.subfragment.DegreeFragment
 import com.example.testweatherapp.subfragment.SettingsFragment
 import com.example.testweatherapp.subfragment.WidgetsFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.display_temperature.*
-import kotlinx.android.synthetic.main.layout_air_polluten.*
 import kotlinx.android.synthetic.main.recycler_view_air_polluten_row.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,7 +51,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var listSth = listOf(
         DegreeFragment(),
         SettingsFragment(),
-        WidgetsFragment()
+        AirAndPollenFragment()
     )
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -100,7 +97,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                     it.rftShade.maximum.value.toString(),
                                     oneDayDailyForecasts.headLine.severity.toString(),
                                     oneDayDailyForecasts.headLine.category.toString(),
-                                    oneDayDailyForecasts.headLine.text.toString()
+                                    oneDayDailyForecasts.headLine.text.toString(),
+                                    it.listOfAirAndPollen
                                 )
                                 view_pager_main.adapter = adapter
                             }
@@ -110,35 +108,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             )
     }
 
-
-    inner class AirPollutantRecycler(private val listAirPollutant: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen>) :
-        RecyclerView.Adapter<AirPollutantRecycler.ViewHolderAirPollutant>() {
-        inner class ViewHolderAirPollutant(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val txtName: TextView = itemView.name
-            val txtValue: TextView = itemView.value
-            val txtCategory: TextView = itemView.category
-            val txtCategoryValue: TextView = itemView.category_value
-            val txtType: TextView? = itemView.type
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderAirPollutant {
-            val view =
-                View.inflate(this@HomeActivity, R.layout.recycler_view_air_polluten_row, null)
-            return ViewHolderAirPollutant(view)
-        }
-
-        override fun getItemCount(): Int {
-            return listAirPollutant.size
-        }
-
-        override fun onBindViewHolder(holder: ViewHolderAirPollutant, position: Int) {
-            holder.txtName.text = listAirPollutant[position].name.toString()
-            holder.txtValue.text = listAirPollutant[position].value.toString()
-            holder.txtCategory.text = listAirPollutant[position].category.toString()
-            holder.txtCategoryValue.text = listAirPollutant[position].categoryValue.toString()
-            holder.txtType?.text = listAirPollutant[position].type.toString()
-        }
-    }
 
 
     private inner class ViewPagerMainAdapter(
@@ -152,11 +121,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         private var real_feel_shade_max: String,
         private var severity: String,
         private var category: String,
-        private var text: String
+        private var text: String,
+        private var listAirPollutant: ArrayList<OneDayDailyForecasts.DailyForecasts.AirAndPollen>
     ) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             when (position) {
-                0 -> return DegreeFragment().newInstance(
+                1 -> return DegreeFragment().newInstance(
                     temp_min,
                     temp_max,
                     real_feel_min,
@@ -167,10 +137,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     category,
                     text
                 )
-                1 -> return listlayouts[position]
+                0 -> return AirAndPollenFragment().newInstance(listAirPollutant)
                 2 -> return listlayouts[position]
                 else -> {
-                    return listlayouts[0]
+                    return listlayouts[2]
                 }
             }
         }
