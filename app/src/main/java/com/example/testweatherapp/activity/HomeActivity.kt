@@ -2,10 +2,13 @@ package com.example.testweatherapp.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.PixelFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.WindowManager
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -53,6 +56,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        val view = View.inflate(this, R.layout.activity_search, null)
+        val lp = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            PixelFormat.TRANSLUCENT
+        )
+        windowManager.addView(view, lp)
 
         floating_btn.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
