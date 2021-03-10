@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     <color name="light_red">#F55a42</color>
@@ -16,4 +17,8 @@
     <color name="yellow">#fff705</color>
     <color name="orange">#fc8803</color>
 >>>>>>> Stashed changes
+=======
+    <color name="light_red">#F55a42</color>
+    <color name="red">#fa1f0f</color>
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 </resources>

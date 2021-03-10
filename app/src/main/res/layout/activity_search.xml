@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,11 +9,17 @@
     tools:context=".activity.SearchActivity"
     android:layout_margin="@dimen/spacing_large"
     android:padding="@dimen/spacing_normal">
+=======
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/search_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+<<<<<<< HEAD
         android:background="@color/red"
         android:theme="@style/Theme.TestWeatherApp">
 
@@ -21,6 +28,9 @@
             android:layout_height="wrap_content"
             app:queryHint="@string/str_hint_search" />
     </androidx.appcompat.widget.Toolbar>
+=======
+        android:background="@color/red" />
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 
     <TextView
         android:id="@+id/txtView"
@@ -28,6 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/search_tool_bar"
         android:layout_centerHorizontal="true"
+<<<<<<< HEAD
+=======
+        android:text="No results found!"
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
         android:textSize="@dimen/font_normal" />
 
     <androidx.recyclerview.widget.RecyclerView

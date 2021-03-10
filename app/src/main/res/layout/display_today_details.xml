@@ -4,9 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<<<<<<< HEAD:app/src/main/res/layout/view_pager_main_row.xml
 <<<<<<< Updated upstream:app/src/main/res/layout/view_pager_main_row.xml
+=======
+    <TextView
+        android:id="@+id/txt_view_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal"
+        android:text="Testing"
+        android:textSize="@dimen/font_larger" />
+
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c:app/src/main/res/layout/display_today_details.xml
     <ImageView
-        android:id="@+id/img_test"
+        android:id="@+id/img_test_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

@@ -17,7 +17,10 @@ import com.example.testweatherapp.`class`.City
 import com.example.testweatherapp.`interface`.AccuWeather
 import com.example.testweatherapp.`interface`.ItemClickListener
 import kotlinx.android.synthetic.main.activity_search.*
+<<<<<<< HEAD
 import kotlinx.android.synthetic.main.app_bar_main.*
+=======
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 import kotlinx.android.synthetic.main.recycler_view_search_result.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,23 +30,37 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 const val baseURL = "https://dataservice.accuweather.com/"
+<<<<<<< HEAD
 const val apiKey = "GRgowd5sFATdeTGElatL0HS9cJlLXc1j"
+=======
+const val apiKey = "CzawK6VvXPdqs9ALeioQbWz2guTHF1wz"
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 const val language = "en-US"
 
 class SearchActivity : AppCompatActivity(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+<<<<<<< HEAD
         //setSupportActionBar(search_tool_bar)
         //setSupportActionBar(tool_bar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+=======
+        setSupportActionBar(search_tool_bar)
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)
+<<<<<<< HEAD
         val search = menu?.findItem(R.id.nav_search)?.actionView as SearchView
         //val searchView = search?.actionView as SearchView
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+=======
+        val search = menu?.findItem(R.id.nav_search)
+        val searchView = search?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -78,6 +95,7 @@ class SearchActivity : AppCompatActivity(), ItemClickListener {
                     rc_view_search_location.layoutManager = LinearLayoutManager(this@SearchActivity)
                 }
             }
+<<<<<<< HEAD
         })
     }
 
@@ -86,6 +104,10 @@ class SearchActivity : AppCompatActivity(), ItemClickListener {
         val returnIntent = Intent().putExtra("city_key", city.Key)
         setResult(Activity.RESULT_OK, returnIntent)
         finish();
+=======
+
+        })
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
     }
 
     inner class SearchBarAdapter(
@@ -114,5 +136,17 @@ class SearchActivity : AppCompatActivity(), ItemClickListener {
                 itemClickListener.onItemClicked(listOfCities[position])
             }
         }
+<<<<<<< HEAD
+=======
+
+
+    }
+
+    override fun onItemClicked(city: City) {
+        Toast.makeText(this@SearchActivity, city.LocalizedName, Toast.LENGTH_SHORT).show()
+        val returnIntent = Intent().putExtra("city_key", city.Key)
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish();
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
     }
 }

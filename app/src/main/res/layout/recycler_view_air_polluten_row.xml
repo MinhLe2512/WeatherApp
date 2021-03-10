@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_air_pollutant"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_normal"
     app:cardCornerRadius="@dimen/spacing_normal">
@@ -14,17 +15,33 @@
         android:paddingStart="@dimen/spacing_normal"
         android:paddingTop="@dimen/spacing_normal"
         android:paddingEnd="@dimen/spacing_normal">
+=======
+    android:layout_height="200dp"
+    android:layout_margin="@dimen/spacing_normal"
+    android:padding="@dimen/spacing_normal"
+    app:cardBackgroundColor="@color/light_red"
+    app:cardCornerRadius="@dimen/spacing_normal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
+<<<<<<< HEAD
             android:layout_height="wrap_content"
             android:textSize="@dimen/rf_min" />
+=======
+            android:layout_height="wrap_content" />
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 
         <TextView
             android:id="@+id/value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_below="@id/name"
             android:textSize="@dimen/rf_max"
             android:layout_marginBottom="@dimen/spacing_normal"/>
@@ -45,13 +62,32 @@
                 android:textSize="@dimen/font_larger" />
 
         </androidx.cardview.widget.CardView>
+=======
+            android:layout_below="@+id/name" />
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/value" />
+
+        <TextView
+            android:id="@+id/category_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category" />
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 
         <TextView
             android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_below="@id/color_bar"
             android:layout_marginTop="@dimen/spacing_normal"
             android:layout_marginBottom="@dimen/spacing_normal"/>
+=======
+            android:layout_below="@+id/category_value" />
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

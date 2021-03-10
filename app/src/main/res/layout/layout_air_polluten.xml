@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="wrap_content"
     android:background="@drawable/testing"
+=======
+    android:layout_height="match_parent"
+    android:background="@color/light_red"
+>>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
     android:padding="@dimen/spacing_large">
 
     <androidx.recyclerview.widget.RecyclerView
