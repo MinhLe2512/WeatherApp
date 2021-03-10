@@ -11,8 +11,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/red"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/Theme.AppCompat.Light" />
+        android:theme="@style/Theme.TestWeatherApp"
+        app:popupTheme="@style/Theme.TestWeatherApp"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -20,18 +20,18 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_search"
-            android:contentDescription="@string/str_search"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/spacing_normal"
-            android:id="@+id/floating_btn" />
+            android:contentDescription="@string/str_search"
+            android:src="@drawable/ic_search" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </FrameLayout>
 </LinearLayout>
 
