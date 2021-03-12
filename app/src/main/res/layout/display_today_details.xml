@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-<<<<<<< HEAD:app/src/main/res/layout/view_pager_main_row.xml
-<<<<<<< Updated upstream:app/src/main/res/layout/view_pager_main_row.xml
-=======
     <TextView
         android:id="@+id/txt_view_1"
         android:layout_width="wrap_content"
@@ -15,7 +11,6 @@
         android:text="Testing"
         android:textSize="@dimen/font_larger" />
 
->>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c:app/src/main/res/layout/display_today_details.xml
     <ImageView
         android:id="@+id/img_test_1"
         android:layout_width="wrap_content"
@@ -23,31 +18,3 @@
         android:layout_centerInParent="true"
         android:background="@drawable/ic_launcher_background" />
 </RelativeLayout>
-=======
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_normal">
-
-        <ImageView
-            android:id="@+id/img_btn"
-            android:layout_width="@dimen/ic_button"
-            android:layout_height="@dimen/ic_button"
-            android:background="@android:color/transparent"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_sun" />
-
-
-        <TextView
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:id="@+id/ice_prob_night"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img_btn"
-            android:textAlignment="center"
-            android:textSize="@dimen/rf_max" />
-    </RelativeLayout>
-</LinearLayout>
-
-
->>>>>>> Stashed changes:app/src/main/res/layout/display_today_details.xml

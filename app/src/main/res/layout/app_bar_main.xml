@@ -9,51 +9,16 @@
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        android:background="@color/teal_200"
-        android:elevation="6dp"
-=======
         android:background="@color/red"
         android:elevation="4dp"
->>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/Theme.AppCompat.Light" />
-=======
-        android:background="@color/red"
-        android:elevation="4dp"
-        android:theme="@style/Theme.TestWeatherApp"
-        app:popupTheme="@style/Theme.TestWeatherApp"/>
->>>>>>> Stashed changes
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-=======
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/spacing_normal"
-            android:contentDescription="@string/str_search"
-            android:src="@drawable/ic_search" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
->>>>>>> Stashed changes
-=======
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +32,6 @@
             android:id="@+id/view_pager_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
->>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
     </FrameLayout>
 </LinearLayout>
 

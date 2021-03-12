@@ -9,22 +9,9 @@
     <string name="str_widgets">Widgets</string>
     <string name="str_communicate">Communicate</string>
     <string name="str_search">Search</string>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-    <string name="str_hint_search">Search location</string>
-=======
     <string name="str_hint_search">Try searching for a different city, zip code or point of interest</string>
->>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
     <string name="real_feel">Real feel</string>
     <string name="real_feel_shade">Real feel shade</string>
     <string name="default_number">N/A</string>
     <string name="note">Notes:</string>
-<<<<<<< HEAD
-    <string name="degree">°</string>
-    <string name="day">Day</string>
-    <string name="night">Night</string>
->>>>>>> Stashed changes
-=======
->>>>>>> 07a3474779f67ec8043b984d97256b795f26fa5c
 </resources>
