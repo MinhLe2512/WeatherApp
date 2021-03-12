@@ -9,11 +9,14 @@
     <string name="str_widgets">Widgets</string>
     <string name="str_communicate">Communicate</string>
     <string name="str_search">Search</string>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 5dccee9ba0d6b08594c5da63b79ee179b2f15016
     <string name="str_hint_search">Search location</string>
     <string name="real_feel">Real feel</string>
     <string name="real_feel_shade">Real feel shade</string>
@@ -22,8 +25,11 @@
     <string name="degree">°</string>
     <string name="day">Day</string>
     <string name="night">Night</string>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 5dccee9ba0d6b08594c5da63b79ee179b2f15016
 </resources>

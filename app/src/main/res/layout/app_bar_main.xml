@@ -9,6 +9,7 @@
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         android:background="@color/teal_200"
@@ -18,14 +19,19 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 5dccee9ba0d6b08594c5da63b79ee179b2f15016
         android:background="@color/red"
         android:elevation="4dp"
         android:theme="@style/Theme.TestWeatherApp"
         app:popupTheme="@style/Theme.TestWeatherApp"/>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 5dccee9ba0d6b08594c5da63b79ee179b2f15016
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -52,10 +58,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 5dccee9ba0d6b08594c5da63b79ee179b2f15016
     </FrameLayout>
 </LinearLayout>
 
