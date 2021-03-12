@@ -35,15 +35,15 @@ class SearchActivity : AppCompatActivity(), ItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         //setSupportActionBar(search_tool_bar)
-        //setSupportActionBar(tool_bar)
+        setSupportActionBar(test_toolbar)
+        searching(searchViewQuery)
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu, menu)
-        val search = menu?.findItem(R.id.nav_search)?.actionView as SearchView
+    private fun searching(searchView: androidx.appcompat.widget.SearchView) {
         //val searchView = search?.actionView as SearchView
-        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -53,7 +53,6 @@ class SearchActivity : AppCompatActivity(), ItemClickListener {
                 return true
             }
         })
-        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setUpLocationRequest(searchString: String) {
@@ -73,9 +72,10 @@ class SearchActivity : AppCompatActivity(), ItemClickListener {
                     val listCities = response.body()
                     if (listCities.isNullOrEmpty())
                         return
-                    rc_view_search_location.adapter =
+                    recycleView.adapter =
                         SearchBarAdapter(listCities, this@SearchActivity)
-                    rc_view_search_location.layoutManager = LinearLayoutManager(this@SearchActivity)
+                    recycleView.layoutManager = LinearLayoutManager(this@SearchActivity)
+                    recycleView.isNestedScrollingEnabled = false
                 }
             }
         })
@@ -110,7 +110,7 @@ class SearchActivity : AppCompatActivity(), ItemClickListener {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.cityName.text = listOfCities[position].LocalizedName.toString()
-            holder.itemView.setOnClickListener{
+            holder.itemView.setOnClickListener {
                 itemClickListener.onItemClicked(listOfCities[position])
             }
         }

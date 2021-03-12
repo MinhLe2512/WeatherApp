@@ -1,40 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayoutActivityA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.SearchActivity"
-    android:layout_margin="@dimen/spacing_large"
-    android:padding="@dimen/spacing_normal">
+    android:fitsSystemWindows="true"
+    tools:context=".activity.SearchActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/search_tool_bar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/red"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:theme="@style/Theme.TestWeatherApp">
 
-        <androidx.appcompat.widget.SearchView
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/test_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:visibility="gone"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/Theme.TestWeatherApp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardS"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:queryHint="@string/str_hint_search" />
-    </androidx.appcompat.widget.Toolbar>
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-    <TextView
-        android:id="@+id/txtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_tool_bar"
-        android:layout_centerHorizontal="true"
-        android:textSize="@dimen/font_normal" />
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchViewQuery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/spacing_large"
+                app:closeIcon="@drawable/ic_close"
+                app:iconifiedByDefault="false"
+                app:queryHint="Search location" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_view_search_location"
+        </androidx.cardview.widget.CardView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_tool_bar"
-        android:padding="@dimen/spacing_normal" />
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_vertical"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:focusableInTouchMode="true"
+            android:paddingBottom="5dp" />
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
