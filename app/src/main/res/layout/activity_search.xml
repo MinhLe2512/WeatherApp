@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activity.SearchActivity"
+    android:layout_margin="@dimen/spacing_large"
+    android:padding="@dimen/spacing_normal">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/search_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/red" />
+        android:background="@color/red"
+        android:theme="@style/Theme.TestWeatherApp">
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:queryHint="@string/str_hint_search" />
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/txtView"
@@ -16,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/search_tool_bar"
         android:layout_centerHorizontal="true"
-        android:text="No results found!"
         android:textSize="@dimen/font_normal" />
 
     <androidx.recyclerview.widget.RecyclerView
