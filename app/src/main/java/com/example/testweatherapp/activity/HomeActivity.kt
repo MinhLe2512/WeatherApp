@@ -44,9 +44,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val apiKey = "CzawK6VvXPdqs9ALeioQbWz2guTHF1wz" //GRgowd5sFATdeTGElatL0HS9cJlLXc1j
     private val language = "en-US"
 
+
     private val requestCode: Int = 200
     private var listSth = listOf<Fragment>()
     private lateinit var view: View
+    private lateinit var puWindow: PopupWindow
 
     //DegreeFragment
     private var degree = Degree(
@@ -63,17 +65,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     )
     private var airAndPollenFragment = AirAndPollenFragment(listAirAndPollen)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         floating_btn.setOnClickListener {
-            val window = PopupWindow(this@HomeActivity)
+            puWindow = PopupWindow(this@HomeActivity)
             view =
                 View.inflate(this@HomeActivity, R.layout.activity_search, null)
-            window.isFocusable = true
-            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            window.contentView = view
-            window.showAtLocation(view, Gravity.CENTER, 0, 0)
+            puWindow.isFocusable = true
+            puWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            puWindow.contentView = view
+            puWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
             searching(view.searchViewQuery)
             //window.showAsDropDown(searchViewQuery)
         }
@@ -125,6 +128,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onItemClicked(city: City) {
         Toast.makeText(this@HomeActivity, city.LocalizedName, Toast.LENGTH_SHORT).show()
+        setUpOneDayForeCasts(city.Key)
+        puWindow.dismiss()
     }
 
     inner class SearchBarAdapter(
