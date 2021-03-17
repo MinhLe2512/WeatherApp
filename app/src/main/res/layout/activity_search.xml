@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayoutActivityA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     android:padding="@dimen/spacing_large"
-    tools:context=".activity.SearchActivity">
+    tools:context=".activity.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardS"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:cardBackgroundColor="@android:color/white"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
@@ -36,7 +36,7 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchViewQuery"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginEnd="@dimen/spacing_large"
                 app:closeIcon="@drawable/ic_close"
@@ -46,16 +46,12 @@
         </androidx.cardview.widget.CardView>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="match_parent"
+        android:clipToPadding="true"
+        android:paddingBottom="5dp"
+        android:padding="@dimen/spacing_normal"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="true"
-            android:paddingBottom="5dp" />
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

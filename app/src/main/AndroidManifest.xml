@@ -12,15 +12,13 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".activity.HomeActivity"
-            android:theme="@style/Theme.TestWeatherApp.NoActionBar">
+            android:theme="@style/Theme.TestWeatherApp.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".activity.SearchActivity">
-
         </activity>
     </application>
 
