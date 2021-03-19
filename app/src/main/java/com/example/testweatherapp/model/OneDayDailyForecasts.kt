@@ -1,9 +1,8 @@
-package com.example.testweatherapp.`class`
+package com.example.testweatherapp.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import java.math.BigInteger
 
 class OneDayDailyForecasts(
     @SerializedName("Headline")

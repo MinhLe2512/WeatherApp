@@ -1,32 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/blue_light"
+    android:padding="@dimen/spacing_normal">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/img_btn"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_sun" />
+
+
+    <LinearLayout
+        android:id="@+id/linear_sun_moon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_normal">
+        android:layout_below="@id/txtClock"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-        <ImageView
-            android:id="@+id/img_btn"
-            android:layout_width="@dimen/ic_button"
-            android:layout_height="@dimen/ic_button"
-            android:background="@android:color/transparent"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_sun" />
-
-
-        <TextView
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:id="@+id/ice_prob_night"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/sun"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/img_btn"
-            android:textAlignment="center"
-            android:textSize="@dimen/rf_max" />
-    </RelativeLayout>
-</LinearLayout>
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/hours_sun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest"
+                app:drawableEndCompat="@drawable/line"
+                app:drawableStartCompat="@drawable/ic_sun" />
+
+
+            <TextView
+                android:id="@+id/sun_rise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest"
+                app:drawableEndCompat="@drawable/line" />
+
+            <TextView
+                android:id="@+id/sun_set"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest"
+                app:drawableEndCompat="@drawable/line" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/moon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/hours_moon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest"
+                app:drawableStartCompat="@drawable/ic_moon" />
+
+
+            <TextView
+                android:id="@+id/moon_rise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+            <TextView
+                android:id="@+id/moon_set"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextClock
+        android:id="@+id/txtClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/ic_cloud" />
+
+    <LinearLayout
+        android:id="@+id/linear_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_sun_moon"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_large"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:id="@+id/linear_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/rain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+            <TextView
+                android:id="@+id/thunder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+            <TextView
+                android:id="@+id/snow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+            <TextView
+                android:id="@+id/ice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_prob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rain_prob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+
+            <TextView
+                android:id="@+id/thunder_prob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+            <TextView
+                android:id="@+id/snow_prob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+            <TextView
+                android:id="@+id/ice_prob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1"
+                android:text="@string/default_number"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_largest" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_more_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_weather"
+        android:text="@string/more_dtl"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/font_large"/>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_more_details"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_down" />
+</RelativeLayout>
 
 

@@ -12,9 +12,10 @@
     <string name="str_hint_search">Search location</string>
     <string name="real_feel">Real feel</string>
     <string name="real_feel_shade">Real feel shade</string>
-    <string name="default_number">N/A</string>
+    <string name="default_number">--</string>
     <string name="note">Notes:</string>
     <string name="degree">°</string>
     <string name="day">Day</string>
     <string name="night">Night</string>
+    <string name="more_dtl">More details</string>
 </resources>

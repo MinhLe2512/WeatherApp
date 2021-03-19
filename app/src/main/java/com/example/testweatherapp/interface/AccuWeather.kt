@@ -1,7 +1,7 @@
 package com.example.testweatherapp.`interface`
 
-import com.example.testweatherapp.`class`.City
-import com.example.testweatherapp.`class`.OneDayDailyForecasts
+import com.example.testweatherapp.model.City
+import com.example.testweatherapp.model.OneDayDailyForecasts
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

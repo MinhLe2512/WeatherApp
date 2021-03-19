@@ -1,4 +1,4 @@
-package com.example.testweatherapp.`class`
+package com.example.testweatherapp.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -13,11 +13,11 @@ class City(
     @SerializedName("Rank")
     val Rank: Int = 0,
     @SerializedName("LocalizedName")
-    val LocalizedName: String? = "localized_name",
-    @SerializedName("Country")
-    val country: Country,
-    @SerializedName("AdministrativeArea")
-    val area: AdministrativeArea
+    val LocalizedName: String? = "localized_name"
+//    @SerializedName("Country")
+//    val country: Country,
+//    @SerializedName("AdministrativeArea")
+//    val area: AdministrativeArea
 
 ) {
     class Country(

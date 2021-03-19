@@ -1,7 +1,6 @@
 package com.example.testweatherapp.activity
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,6 +8,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Slide
+import android.util.DisplayMetrics
+import android.util.Size
 import android.view.*
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -22,11 +23,10 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testweatherapp.R
-import com.example.testweatherapp.`class`.City
-import com.example.testweatherapp.`class`.Degree
-import com.example.testweatherapp.`class`.OneDayDailyForecasts
 import com.example.testweatherapp.`interface`.AccuWeather
 import com.example.testweatherapp.`interface`.ItemClickListener
+import com.example.testweatherapp.`object`.Search
+import com.example.testweatherapp.model.*
 import com.example.testweatherapp.subfragment.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
@@ -42,37 +42,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     ItemClickListener {
-    //Search API
-    private val baseURL = "https://dataservice.accuweather.com/"
-    private val apiKey = "CzawK6VvXPdqs9ALeioQbWz2guTHF1wz" //GRgowd5sFATdeTGElatL0HS9cJlLXc1j
-    private val language = "en-US"
-
-
-    private val requestCode: Int = 200
     private var listSth = listOf<Fragment>()
     private lateinit var view: View
     private lateinit var puWindow: PopupWindow
 
-    //DegreeFragment
-    private var degree = Degree(
-        null, null, null, null, null,
-        null, null, null, null, null
-    )
-    private var degreeFragment = DegreeFragment(degree)
-    private lateinit var myDialog: Dialog
 
-
-    //AỉrAndPollenFragment
-    private var listAirAndPollen = listOf<OneDayDailyForecasts.DailyForecasts.AirAndPollen>(
-        OneDayDailyForecasts.DailyForecasts.AirAndPollen(null, null, null, null, null)
-    )
-    private var airAndPollenFragment = AirAndPollenFragment(listAirAndPollen)
-
+    private var degreeFragment = DegreeFragment()
+    private var airAndPollenFragment = AirAndPollenFragment()
+    private var dayDetailsFragment = DayDetailsFragment()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
         floating_btn.setOnClickListener {
             puWindow = PopupWindow(this@HomeActivity)
             view =
@@ -82,57 +65,29 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             puWindow.contentView = view
             puWindow.enterTransition = Slide(Gravity.END)
             puWindow.showAtLocation(view, Gravity.CENTER, 0, -3000)
-
-            main_activity.alpha = 0.5f
+            //main_activity.alpha = 0.5f
             searching(view.searchViewQuery)
             puWindow.setOnDismissListener {
                 main_activity.alpha = 1f
             }
             //window.showAsDropDown(searchViewQuery)
         }
+        listSth = listOf(
+            degreeFragment,
+            airAndPollenFragment,
+            dayDetailsFragment
+        )
 
+        val adapter = ViewPagerMainAdapter(
+            listSth,
+            supportFragmentManager
+        )
+
+        view_pager_main.adapter = adapter
+        view_pager_main.offscreenPageLimit = 4
         setUpActionBar()
-    }
 
-    private fun searching(searchView: androidx.appcompat.widget.SearchView) {
-        //val searchView = search?.actionView as SearchView
-        searchView.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                setUpLocationRequest(newText!!)
-                return true
-            }
-        })
-    }
-
-    private fun setUpLocationRequest(searchString: String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(baseURL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(AccuWeather::class.java)
-        val callback = service.getCities(apiKey, searchString, language)
-        callback.enqueue(object : Callback<List<City>> {
-            override fun onFailure(call: Call<List<City>>, t: Throwable) {
-                Toast.makeText(this@HomeActivity, "No result found!", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onResponse(call: Call<List<City>>, response: Response<List<City>>) {
-                if (response.code() == 200) {
-                    val listCities = response.body()
-                    if (listCities.isNullOrEmpty())
-                        return
-                    view.recycleView.adapter =
-                        SearchBarAdapter(listCities, this@HomeActivity)
-                    view.recycleView.layoutManager = LinearLayoutManager(this@HomeActivity)
-                    view.recycleView.isNestedScrollingEnabled = false
-                }
-            }
-        })
     }
 
     override fun onItemClicked(city: City) {
@@ -141,33 +96,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         puWindow.dismiss()
     }
 
-    inner class SearchBarAdapter(
-        private val listOfCities: List<City>,
-        private val itemClickListener: ItemClickListener
-    ) :
-        RecyclerView.Adapter<SearchBarAdapter.ViewHolder>() {
-
-        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val cityName: TextView = itemView.search_result
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view =
-                View.inflate(this@HomeActivity, R.layout.recycler_view_search_result, null)
-            return ViewHolder(view)
-        }
-
-        override fun getItemCount(): Int {
-            return listOfCities.size
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.cityName.text = listOfCities[position].LocalizedName.toString()
-            holder.itemView.setOnClickListener {
-                itemClickListener.onItemClicked(listOfCities[position])
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -198,63 +126,87 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    private fun searching(searchView: androidx.appcompat.widget.SearchView) {
+        //val searchView = search?.actionView as SearchView
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                setUpLocationRequest(newText!!)
+                return true
+            }
+        })
+    }
+
+    private fun setUpLocationRequest(searchString: String) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(Search.baseURL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(AccuWeather::class.java)
+        val callback = service.getCities(Search.apiKey, searchString, Search.language)
+        callback.enqueue(object : Callback<List<City>> {
+            override fun onFailure(call: Call<List<City>>, t: Throwable) {
+                Toast.makeText(this@HomeActivity, "No result found!", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<List<City>>, response: Response<List<City>>) {
+                if (response.code() == 200) {
+                    val listCities = response.body()
+                    if (listCities.isNullOrEmpty())
+                        return
+
+                    view.recycleView.adapter =
+                        SearchBarAdapter(listCities, this@HomeActivity)
+                    view.recycleView.layoutManager = LinearLayoutManager(this@HomeActivity)
+//                    view.recycleView.isNestedScrollingEnabled = false
+                }
+            }
+        })
+    }
+
     private fun setUpOneDayForeCasts(locationKey: String?) {
         val retrofit =
-            Retrofit.Builder().baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create())
+            Retrofit.Builder().baseUrl(Search.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val service = retrofit.create(AccuWeather::class.java)
         val callback =
-            service.getForecasts1Day(locationKey, apiKey, language, "true", "true").enqueue(
-                object : Callback<OneDayDailyForecasts> {
-                    override fun onFailure(call: Call<OneDayDailyForecasts>, t: Throwable) {
-                        Toast.makeText(
-                            this@HomeActivity,
-                            "Unable to find location",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
+            service.getForecasts1Day(locationKey, Search.apiKey, Search.language, "true", "true")
+                .enqueue(
+                    object : Callback<OneDayDailyForecasts> {
+                        override fun onFailure(call: Call<OneDayDailyForecasts>, t: Throwable) {
+                            Toast.makeText(
+                                this@HomeActivity,
+                                "Unable to find location",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
 
-                    override fun onResponse(
-                        call: Call<OneDayDailyForecasts>,
-                        response: Response<OneDayDailyForecasts>
-                    ) {
-                        if (response.code() == 200) {
-                            val oneDayDailyForecasts = response.body()
+                        override fun onResponse(
+                            call: Call<OneDayDailyForecasts>,
+                            response: Response<OneDayDailyForecasts>
+                        ) {
+                            if (response.code() == Search.requestCode) {
+                                val oneDayDailyForecasts = response.body()
 
-                            oneDayDailyForecasts!!.dailyForecasts.forEach {
-                                degree = Degree(
-                                    it.temperature.minimum.value.toString(),
-                                    it.temperature.maximum.value.toString(),
-                                    it.rfTemperature.minimum.value.toString(),
-                                    it.rfTemperature.maximum.value.toString(),
-                                    it.rftShade.minimum.value.toString(),
-                                    it.rftShade.maximum.value.toString(),
-                                    it.temperature.minimum.unit.toString(),
-                                    oneDayDailyForecasts.headLine.severity.toString(),
-                                    oneDayDailyForecasts.headLine.category.toString(),
-                                    oneDayDailyForecasts.headLine.text.toString()
-                                )
-                                listAirAndPollen = it.listOfAirAndPollen
-
-                                degreeFragment.onUpdate(degree)
-                                airAndPollenFragment.onUpdate(listAirAndPollen)
-
-                                listSth = listOf(
-                                    degreeFragment,
-                                    airAndPollenFragment,
-                                    DayDetailsFragment()
-                                )
-                                val adapter = ViewPagerMainAdapter(
-                                    listSth,
-                                    supportFragmentManager
-                                )
-                                view_pager_main.adapter = adapter
+                                oneDayDailyForecasts!!.dailyForecasts.forEach {
+                                    degreeFragment.onUpdate(
+                                        it,
+                                        oneDayDailyForecasts.headLine.severity.toString(),
+                                        oneDayDailyForecasts.headLine.text!!
+                                    )
+                                    airAndPollenFragment.onUpdate(it.listOfAirAndPollen)
+                                    dayDetailsFragment.onUpdate(it)
+                                }
                             }
                         }
                     }
-                }
-            )
+                )
     }
 
     private fun setUpActionBar() {
@@ -274,7 +226,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
     }
 
-    private inner class ViewPagerMainAdapter(
+    inner class ViewPagerMainAdapter(
         private var listlayouts: List<Fragment>,
         private val fragmentManager: FragmentManager
     ) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
@@ -282,8 +234,32 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             return listlayouts[position]
         }
 
-        override fun getCount(): Int {
-            return listlayouts.size
+        override fun getCount(): Int = listlayouts.size
+    }
+
+    inner class SearchBarAdapter(
+        private val listOfCities: List<City>,
+        private val itemClickListener: ItemClickListener
+    ) :
+        RecyclerView.Adapter<SearchBarAdapter.ViewHolder>() {
+
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val cityName: TextView = itemView.search_result
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view =
+                View.inflate(this@HomeActivity, R.layout.recycler_view_search_result, null)
+            return ViewHolder(view)
+        }
+
+        override fun getItemCount(): Int = listOfCities.size
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.cityName.text = listOfCities[position].LocalizedName.toString()
+            holder.itemView.setOnClickListener {
+                itemClickListener.onItemClicked(listOfCities[position])
+            }
         }
     }
 }
