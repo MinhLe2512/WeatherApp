@@ -42,5 +42,11 @@ class DayDetailsFragment : Fragment() {
 
         val night2 = formatter.parse(obj.moon.set)
         moon_set.text = formatter2.format(night2)
+
+        precipitationDay.text = obj.day.shortPhrase
+        precipitationProbDay.text = obj.day.precipitationProbability.toString()
+
+        precipitationNight.text = obj.day.shortPhrase
+        precipitationProbNight.text = obj.day.precipitationProbability.toString()
     }
 }

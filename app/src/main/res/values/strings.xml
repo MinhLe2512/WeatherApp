@@ -18,4 +18,7 @@
     <string name="day">Day</string>
     <string name="night">Night</string>
     <string name="more_dtl">More details</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="precipitationProb">Precipitation Probability</string>
+    <string name="rise_set">Rise-Set</string>
 </resources>

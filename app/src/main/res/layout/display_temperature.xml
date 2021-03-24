@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue_light"
-            android:padding="@dimen/spacing_normal">
+            android:paddingTop="@dimen/spacing_larger"
+            android:paddingBottom="@dimen/spacing_larger">
 
             <LinearLayout
                 android:id="@+id/min"
@@ -61,6 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/font_huge" />
 
                 </LinearLayout>
@@ -118,6 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/day_night"
+                android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -204,6 +207,7 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_degree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linear_layout_day_night"
@@ -219,16 +223,39 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/spacing_normal"
-                        android:text="@string/note" />
+                        android:text="@string/note"
+                        android:textSize="@dimen/font_large" />
 
                     <TextView
                         android:id="@+id/note_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/spacing_normal" />
+                        android:layout_margin="@dimen/spacing_normal"
+                        android:textSize="@dimen/font_large" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txt_more_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_degree"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/more_dtl"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_more_details"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_down" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

@@ -8,14 +8,13 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Slide
-import android.util.DisplayMetrics
-import android.util.Size
 import android.view.*
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.graphics.alpha
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -65,7 +64,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             puWindow.contentView = view
             puWindow.enterTransition = Slide(Gravity.END)
             puWindow.showAtLocation(view, Gravity.CENTER, 0, -3000)
-            //main_activity.alpha = 0.5f
+
+            main_activity.alpha = 0.5f
             searching(view.searchViewQuery)
             puWindow.setOnDismissListener {
                 main_activity.alpha = 1f
@@ -86,8 +86,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         view_pager_main.adapter = adapter
         view_pager_main.offscreenPageLimit = 4
         setUpActionBar()
-
-
     }
 
     override fun onItemClicked(city: City) {
@@ -154,7 +152,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onResponse(call: Call<List<City>>, response: Response<List<City>>) {
-                if (response.code() == 200) {
+                if (response.code() == Search.requestCode) {
                     val listCities = response.body()
                     if (listCities.isNullOrEmpty())
                         return
