@@ -4,7 +4,7 @@
     android:id="@+id/card_view_air_pollutant"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/spacing_normal"
+    android:backgroundTint="@color/blue_light"
     app:cardCornerRadius="@dimen/spacing_normal">
 
     <RelativeLayout
@@ -19,6 +19,7 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:textSize="@dimen/rf_min" />
 
         <TextView
@@ -26,8 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/name"
-            android:textSize="@dimen/rf_max"
-            android:layout_marginBottom="@dimen/spacing_normal"/>
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rf_max" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/color_bar"
@@ -42,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/value"
                 android:layout_gravity="center"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_larger" />
 
         </androidx.cardview.widget.CardView>
@@ -52,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/color_bar"
             android:layout_marginTop="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_normal"/>
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

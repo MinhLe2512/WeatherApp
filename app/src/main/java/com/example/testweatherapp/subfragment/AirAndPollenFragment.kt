@@ -54,8 +54,6 @@ class AirAndPollenFragment() : Fragment() {
                 if (parent.getChildAdapterPosition(view) == 0) {
                     top = marginVal
                 }
-                left = marginVal
-                right = marginVal
                 bottom = marginVal
             }
         }

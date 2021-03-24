@@ -15,10 +15,13 @@
     <string name="default_number">--</string>
     <string name="note">Notes:</string>
     <string name="degree">°</string>
+    <string name="degreeCel">°C</string>
+    <string name="degreeFah">°F</string>
     <string name="day">Day</string>
     <string name="night">Night</string>
     <string name="more_dtl">More details</string>
     <string name="precipitation">Precipitation</string>
     <string name="precipitationProb">Precipitation Probability</string>
     <string name="rise_set">Rise-Set</string>
+    <string name="mode">Switch mode</string>
 </resources>

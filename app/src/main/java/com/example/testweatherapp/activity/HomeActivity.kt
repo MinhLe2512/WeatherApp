@@ -50,26 +50,53 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var airAndPollenFragment = AirAndPollenFragment()
     private var dayDetailsFragment = DayDetailsFragment()
 
+    private var isFABOpen = false
+    private var isCelcius = false
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        floating_btn.setOnClickListener {
-            puWindow = PopupWindow(this@HomeActivity)
-            view =
-                View.inflate(this@HomeActivity, R.layout.activity_search, null)
-            puWindow.isFocusable = true
-            puWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            puWindow.contentView = view
-            puWindow.enterTransition = Slide(Gravity.END)
-            puWindow.showAtLocation(view, Gravity.CENTER, 0, -3000)
+        btn_add.setOnClickListener {
+            if (!isFABOpen) {
+                openFABMenu()
+                btn_search.setOnClickListener {
+                    puWindow = PopupWindow(this@HomeActivity)
+                    view =
+                        View.inflate(this@HomeActivity, R.layout.activity_search, null)
+                    puWindow.isFocusable = true
+                    puWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    puWindow.contentView = view
+                    puWindow.enterTransition = Slide(Gravity.END)
+                    puWindow.showAtLocation(view, Gravity.CENTER, 0, -3000)
 
-            main_activity.alpha = 0.5f
-            searching(view.searchViewQuery)
-            puWindow.setOnDismissListener {
-                main_activity.alpha = 1f
-            }
+                    main_activity.alpha = 0.5f
+                    searching(view.searchViewQuery)
+                    puWindow.setOnDismissListener {
+                        main_activity.alpha = 1f
+                    }
+                }
+                btn_unit.setOnClickListener {
+                    isCelcius = if (!isCelcius) {
+                        Toast.makeText(
+                            this,
+                            resources.getString(R.string.degreeFah),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        true
+                    } else {
+                        Toast.makeText(
+                            this,
+                            resources.getString(R.string.degreeCel),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        false
+                    }
+                }
+            } else closeFABMenu()
+
+
             //window.showAsDropDown(searchViewQuery)
         }
         listSth = listOf(
@@ -206,6 +233,26 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                 )
     }
+
+    private fun openFABMenu() {
+        isFABOpen = true;
+        btn_add.animate().rotation(360f).duration = 360
+        btn_search.animate().translationY(-resources.getDimension(R.dimen.spacing_fab)).duration =
+            200
+        btn_unit.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 2).duration =
+            220
+        btn_mode.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 3).duration =
+            240
+    }
+
+    private fun closeFABMenu() {
+        isFABOpen = false
+        btn_mode.animate().translationY(0f)
+        btn_unit.animate().translationY(0f)
+        btn_search.animate().translationY(0f)
+        btn_add.animate().rotation(0f)
+    }
+
 
     private fun setUpActionBar() {
         setSupportActionBar(tool_bar)

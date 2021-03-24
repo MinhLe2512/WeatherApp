@@ -19,23 +19,51 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue_dark">
+        android:background="@color/blue_dark"
+        android:padding="@dimen/spacing_large">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_btn"
+            android:id="@+id/btn_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/spacing_normal"
+            android:background="@color/blue_light"
             android:contentDescription="@string/str_search"
-            android:src="@drawable/ic_search"
-            android:background="@color/blue_light"/>
+            android:src="@drawable/ic_more"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:background="@color/blue_light"
+            android:contentDescription="@string/str_search"
+            android:src="@drawable/ic_thermostat" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:background="@color/blue_light"
+            android:contentDescription="@string/str_search"
+            android:src="@drawable/ic_search" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:background="@color/blue_light"
+            android:contentDescription="@string/str_search"
+            android:src="@drawable/ic_add"
+            app:fabCustomSize="@dimen/fab" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </FrameLayout>
 </LinearLayout>
 
