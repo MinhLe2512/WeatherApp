@@ -56,8 +56,6 @@ class OneDayDailyForecasts(
         val moon: Moon,
         @SerializedName("RealFeelTemperature")
         val rfTemperature: RealFeelTemperature,
-        @SerializedName("RealFeelTemperatureShade")
-        val rftShade: RealFeelTemperatureShade,
         @SerializedName("DegreeDaySummary")
         val ddSummary: DegreeDaySummary,
         @SerializedName("AirAndPollen")
@@ -66,23 +64,15 @@ class OneDayDailyForecasts(
         class Sun(
             @SerializedName("Rise")
             val rise: String? = null,
-            @SerializedName("EpochRise")
-            val epochRise: Int? = 0,
             @SerializedName("Set")
-            val set: String? = null,
-            @SerializedName("EpochSet")
-            val epochSet: Int? = 0
+            val set: String? = null
         )
 
         class Moon(
             @SerializedName("Rise")
             val rise: String? = null,
-            @SerializedName("EpochRise")
-            val epochRise: Int? = 0,
             @SerializedName("Set")
             val set: String? = null,
-            @SerializedName("EpochSet")
-            val epochSet: Int? = 0,
             @SerializedName("Phase")
             val phase: String? = null,
             @SerializedName("Age")
@@ -99,18 +89,12 @@ class OneDayDailyForecasts(
                 @SerializedName("Value")
                 val value: Float? = 0.0f,
                 @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val unit: String? = null
             )
 
             class Maximum(
                 @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Float? = 0.0f
             )
         }
 
@@ -122,47 +106,15 @@ class OneDayDailyForecasts(
         ) {
             class Minimum(
                 @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Float? = 0.0f
             )
 
             class Maximum(
                 @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Float? = 0.0f
             )
         }
 
-        class RealFeelTemperatureShade(
-            @SerializedName("Minimum")
-            val minimum: Minimum,
-            @SerializedName("Maximum")
-            val maximum: Maximum
-        ) {
-            class Minimum(
-                @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
-            )
-
-            class Maximum(
-                @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
-            )
-        }
 
         class DegreeDaySummary(
             @SerializedName("Heating")
@@ -172,20 +124,12 @@ class OneDayDailyForecasts(
         ) {
             class Heating(
                 @SerializedName("Value")
-                val value: Int? = 0,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Int? = 0
             )
 
             class Cooling(
                 @SerializedName("Value")
-                val value: Int? = 0,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Int? = 0
             )
         }
 
@@ -427,38 +371,22 @@ class OneDayDailyForecasts(
 
             class TotalLiquid(
                 @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Float? = 0.0f
             )
 
             class Rain(
                 @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Float? = 0.0f
             )
 
             class Snow(
                 @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Float? = 0.0f
             )
 
             class Ice(
                 @SerializedName("Value")
-                val value: Float? = 0.0f,
-                @SerializedName("Unit")
-                val unit: String? = null,
-                @SerializedName("UnitType")
-                val unitType: Int? = 0
+                val value: Float? = 0.0f
             )
         }
     }

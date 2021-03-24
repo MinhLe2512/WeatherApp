@@ -1,21 +1,15 @@
 package com.example.testweatherapp.subfragment
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.testweatherapp.R
 import com.example.testweatherapp.model.OneDayDailyForecasts
 import kotlinx.android.synthetic.main.display_today_details.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
-
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class DayDetailsFragment : Fragment() {

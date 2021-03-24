@@ -3,20 +3,13 @@ package com.example.testweatherapp.subfragment
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.res.ColorStateListInflaterCompat.inflate
-import androidx.core.content.res.ComplexColorCompat.inflate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testweatherapp.R
-import com.example.testweatherapp.activity.HomeActivity
 import com.example.testweatherapp.model.OneDayDailyForecasts
 import kotlinx.android.synthetic.main.layout_air_polluten.*
 import kotlinx.android.synthetic.main.recycler_view_air_polluten_row.view.*
@@ -81,6 +74,11 @@ class AirAndPollenFragment() : Fragment() {
             holder.itemView.name.text = listAirPollutant[position].name.toString()
             holder.itemView.value.text = listAirPollutant[position].value.toString()
             holder.itemView.category.text = listAirPollutant[position].category.toString()
+
+            if (listAirPollutant[position].type != null)
+                holder.itemView.type.text = listAirPollutant[position].type.toString()
+            else
+                holder.itemView.type.text = ""
 
             when (listAirPollutant[position].categoryValue) {
                 1, 2 -> holder.itemView.color_bar.setCardBackgroundColor(Color.GREEN)

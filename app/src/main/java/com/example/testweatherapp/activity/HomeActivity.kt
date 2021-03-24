@@ -14,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.graphics.alpha
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -199,43 +198,42 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val service = retrofit.create(AccuWeather::class.java)
-        val callback =
-            service.getForecasts1Day(locationKey, Search.apiKey, Search.language, "true", "true")
-                .enqueue(
-                    object : Callback<OneDayDailyForecasts> {
-                        override fun onFailure(call: Call<OneDayDailyForecasts>, t: Throwable) {
-                            Toast.makeText(
-                                this@HomeActivity,
-                                "Unable to find location",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-                        }
+        service.getForecasts1Day(locationKey, Search.apiKey, Search.language, "true", "true")
+            .enqueue(
+                object : Callback<OneDayDailyForecasts> {
+                    override fun onFailure(call: Call<OneDayDailyForecasts>, t: Throwable) {
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "Unable to find location",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
 
-                        override fun onResponse(
-                            call: Call<OneDayDailyForecasts>,
-                            response: Response<OneDayDailyForecasts>
-                        ) {
-                            if (response.code() == Search.requestCode) {
-                                val oneDayDailyForecasts = response.body()
+                    override fun onResponse(
+                        call: Call<OneDayDailyForecasts>,
+                        response: Response<OneDayDailyForecasts>
+                    ) {
+                        if (response.code() == Search.requestCode) {
+                            val oneDayDailyForecasts = response.body()
 
-                                oneDayDailyForecasts!!.dailyForecasts.forEach {
-                                    degreeFragment.onUpdate(
-                                        it,
-                                        oneDayDailyForecasts.headLine.severity.toString(),
-                                        oneDayDailyForecasts.headLine.text!!
-                                    )
-                                    airAndPollenFragment.onUpdate(it.listOfAirAndPollen)
-                                    dayDetailsFragment.onUpdate(it)
-                                }
+                            oneDayDailyForecasts!!.dailyForecasts.forEach {
+                                degreeFragment.onUpdate(
+                                    it,
+                                    oneDayDailyForecasts.headLine.severity.toString(),
+                                    oneDayDailyForecasts.headLine.text!!
+                                )
+                                airAndPollenFragment.onUpdate(it.listOfAirAndPollen)
+                                dayDetailsFragment.onUpdate(it)
                             }
                         }
                     }
-                )
+                }
+            )
     }
 
     private fun openFABMenu() {
-        isFABOpen = true;
+        isFABOpen = true
         btn_add.animate().rotation(360f).duration = 360
         btn_search.animate().translationY(-resources.getDimension(R.dimen.spacing_fab)).duration =
             200
@@ -273,7 +271,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     inner class ViewPagerMainAdapter(
         private var listlayouts: List<Fragment>,
-        private val fragmentManager: FragmentManager
+        fragmentManager: FragmentManager
     ) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             return listlayouts[position]
