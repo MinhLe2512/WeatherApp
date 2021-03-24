@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.testweatherapp.R
 import com.example.testweatherapp.model.OneDayDailyForecasts
-import kotlinx.android.synthetic.main.display_today_details.*
+import kotlinx.android.synthetic.main.fragment_today_details.*
 import java.text.SimpleDateFormat
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class DayDetailsFragment : Fragment() {
+class FragmentDayDetails : Fragment() {
     @SuppressLint("SimpleDateFormat")
     private val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
 
@@ -21,7 +21,7 @@ class DayDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.display_today_details, container, false)
+        return inflater.inflate(R.layout.fragment_today_details, container, false)
     }
 
     fun onUpdate(obj: OneDayDailyForecasts.DailyForecasts) {

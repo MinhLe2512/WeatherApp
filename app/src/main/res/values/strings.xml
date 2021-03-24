@@ -24,4 +24,11 @@
     <string name="precipitationProb">Precipitation Probability</string>
     <string name="rise_set">Rise-Set</string>
     <string name="mode">Switch mode</string>
+    <string name="thunder_storm">Thunderstorm Probability</string>
+    <string name="rain">Rain Probability</string>
+    <string name="snow">Snow Probability</string>
+    <string name="ice">Ice Probability</string>
+    <string name="wind">Wind Speed</string>
+    <string name="wind_gust">Wind Gust Speed</string>
+    <string name="total_liquid">Total Liquid</string>
 </resources>

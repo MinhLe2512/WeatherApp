@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.testweatherapp.R
 import com.example.testweatherapp.model.OneDayDailyForecasts
-import kotlinx.android.synthetic.main.display_temperature.*
+import kotlinx.android.synthetic.main.fragment_temperature.*
 
 
-class DegreeFragment() : Fragment() {
+class FragmentDegree() : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.display_temperature, container, false)
+        return inflater.inflate(R.layout.fragment_temperature, container, false)
     }
 
     fun onUpdate(obj: OneDayDailyForecasts.DailyForecasts, severity: String, note: String) {

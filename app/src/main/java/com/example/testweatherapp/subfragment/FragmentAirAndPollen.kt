@@ -11,18 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testweatherapp.R
 import com.example.testweatherapp.model.OneDayDailyForecasts
-import kotlinx.android.synthetic.main.layout_air_polluten.*
+import kotlinx.android.synthetic.main.recycler_view_air_polluten.*
 import kotlinx.android.synthetic.main.recycler_view_air_polluten_row.view.*
 
 
-class AirAndPollenFragment() : Fragment() {
+class FragmentAirAndPollen() : Fragment() {
     private var listAirPollutant: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen>? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.layout_air_polluten, container, false)
+        return inflater.inflate(R.layout.recycler_view_air_polluten, container, false)
     }
 
 

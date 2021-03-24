@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.ActivityHome"
             android:theme="@style/Theme.TestWeatherApp.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>

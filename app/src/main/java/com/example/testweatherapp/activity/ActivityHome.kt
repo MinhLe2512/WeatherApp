@@ -29,7 +29,8 @@ import com.example.testweatherapp.subfragment.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_search.view.*
-import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.bar_home.*
+import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.recycler_view_search_result.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,19 +39,21 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     ItemClickListener {
     private var listSth = listOf<Fragment>()
     private lateinit var view: View
     private lateinit var puWindow: PopupWindow
 
 
-    private var degreeFragment = DegreeFragment()
-    private var airAndPollenFragment = AirAndPollenFragment()
-    private var dayDetailsFragment = DayDetailsFragment()
+    private var degreeFragment = FragmentDegree()
+    private var airAndPollenFragment = FragmentAirAndPollen()
+    private var dayDetailsFragment = FragmentDayDetails()
+    private var weatherFragment = FragmentWeather()
 
     private var isFABOpen = false
-    private var isCelcius = false
+    private var isCelsius = false
+    private var degreeUnit = false
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,9 +64,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (!isFABOpen) {
                 openFABMenu()
                 btn_search.setOnClickListener {
-                    puWindow = PopupWindow(this@HomeActivity)
+                    puWindow = PopupWindow(this@ActivityHome)
                     view =
-                        View.inflate(this@HomeActivity, R.layout.activity_search, null)
+                        View.inflate(this@ActivityHome, R.layout.activity_search, null)
                     puWindow.isFocusable = true
                     puWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     puWindow.contentView = view
@@ -77,7 +80,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                 }
                 btn_unit.setOnClickListener {
-                    isCelcius = if (!isCelcius) {
+                    isCelsius = if (!isCelsius) {
+                        degreeUnit = false
                         Toast.makeText(
                             this,
                             resources.getString(R.string.degreeFah),
@@ -85,6 +89,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         ).show()
                         true
                     } else {
+                        degreeUnit = true
                         Toast.makeText(
                             this,
                             resources.getString(R.string.degreeCel),
@@ -94,14 +99,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                 }
             } else closeFABMenu()
-
-
-            //window.showAsDropDown(searchViewQuery)
         }
         listSth = listOf(
             degreeFragment,
             airAndPollenFragment,
-            dayDetailsFragment
+            dayDetailsFragment,
+            weatherFragment
         )
 
         val adapter = ViewPagerMainAdapter(
@@ -115,7 +118,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onItemClicked(city: City) {
-        Toast.makeText(this@HomeActivity, city.LocalizedName, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@ActivityHome, city.LocalizedName, Toast.LENGTH_SHORT).show()
         setUpOneDayForeCasts(city.Key)
         puWindow.dismiss()
     }
@@ -139,9 +142,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.settings -> supportFragmentManager.beginTransaction().addToBackStack(null)
-                .replace(R.id.fragment_container, SettingsFragment()).commit()
+                .replace(R.id.fragment_container, FragmentSettings()).commit()
             R.id.widgets -> supportFragmentManager.beginTransaction().addToBackStack(null)
-                .replace(R.id.fragment_container, WidgetsFragment()).commit()
+                .replace(R.id.fragment_container, FragmentWidgets()).commit()
             else -> {
                 return false
             }
@@ -174,7 +177,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val callback = service.getCities(Search.apiKey, searchString, Search.language)
         callback.enqueue(object : Callback<List<City>> {
             override fun onFailure(call: Call<List<City>>, t: Throwable) {
-                Toast.makeText(this@HomeActivity, "No result found!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ActivityHome, "No result found!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<List<City>>, response: Response<List<City>>) {
@@ -184,8 +187,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         return
 
                     view.recycleView.adapter =
-                        SearchBarAdapter(listCities, this@HomeActivity)
-                    view.recycleView.layoutManager = LinearLayoutManager(this@HomeActivity)
+                        SearchBarAdapter(listCities, this@ActivityHome)
+                    view.recycleView.layoutManager = LinearLayoutManager(this@ActivityHome)
 //                    view.recycleView.isNestedScrollingEnabled = false
                 }
             }
@@ -203,7 +206,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 object : Callback<OneDayDailyForecasts> {
                     override fun onFailure(call: Call<OneDayDailyForecasts>, t: Throwable) {
                         Toast.makeText(
-                            this@HomeActivity,
+                            this@ActivityHome,
                             "Unable to find location",
                             Toast.LENGTH_SHORT
                         )
@@ -215,17 +218,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         response: Response<OneDayDailyForecasts>
                     ) {
                         if (response.code() == Search.requestCode) {
-                            val oneDayDailyForecasts = response.body()
+                            val oneDayDailyForecasts = response.body() ?: return
 
-                            oneDayDailyForecasts!!.dailyForecasts.forEach {
-                                degreeFragment.onUpdate(
-                                    it,
-                                    oneDayDailyForecasts.headLine.severity.toString(),
-                                    oneDayDailyForecasts.headLine.text!!
-                                )
-                                airAndPollenFragment.onUpdate(it.listOfAirAndPollen)
-                                dayDetailsFragment.onUpdate(it)
-                            }
+                            degreeFragment.onUpdate(
+                                oneDayDailyForecasts.dailyForecasts.first(),
+                                oneDayDailyForecasts.headLine.severity.toString(),
+                                oneDayDailyForecasts.headLine.text!!
+                            )
+                            airAndPollenFragment.onUpdate(oneDayDailyForecasts.dailyForecasts.first().listOfAirAndPollen)
+                            dayDetailsFragment.onUpdate(oneDayDailyForecasts.dailyForecasts.first())
+                            weatherFragment.onUpdate(oneDayDailyForecasts.dailyForecasts.first() )
                         }
                     }
                 }
@@ -292,7 +294,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view =
-                View.inflate(this@HomeActivity, R.layout.recycler_view_search_result, null)
+                View.inflate(this@ActivityHome, R.layout.recycler_view_search_result, null)
             return ViewHolder(view)
         }
 

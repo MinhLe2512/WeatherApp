@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/blue_light"
+    android:padding="@dimen/spacing_large"
+    app:cardCornerRadius="@dimen/spacing_normal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rf_min" />
+
+        <TextView
+            android:id="@+id/txt_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large" />
+
+        <LinearLayout
+            android:id="@+id/linear_thunder_storm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_city"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/thunder_storm_prob"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="3"
+                android:text="@string/thunder_storm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+            <TextView
+                android:id="@+id/thunder_storm_prob_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_rain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_thunder_storm"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/rain_prob"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="3"
+                android:text="@string/rain"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+            <TextView
+                android:id="@+id/rain_prob_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_snow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_rain"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/snow_prob"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="3"
+                android:text="@string/snow"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+            <TextView
+                android:id="@+id/snow_prob_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_ice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_snow"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/ice_prob"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="3"
+                android:text="@string/ice"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+            <TextView
+                android:id="@+id/ice_prob_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_wind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_ice"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/wind_speed"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="3"
+                android:text="@string/wind"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+            <TextView
+                android:id="@+id/wind_speed_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_wind_gust"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_wind"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/wind_gust_speed"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="3"
+                android:text="@string/wind_gust"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+
+            <TextView
+                android:id="@+id/wind_gust_speed_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:layout_weight="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:drawableBottomCompat="@drawable/line_horizontal" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_more_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_wind_gust"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/more_dtl"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large" />
+
+        <ImageButton
+            android:id="@+id/btn_more_dt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_more_details"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_down" />
+
+        <ImageButton
+            android:id="@+id/btn_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_more_dt"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_larger"
+            android:layout_marginBottom="@dimen/spacing_huge"
+            android:background="@android:color/transparent"
+            android:scaleX="3"
+            android:scaleY="3"
+            android:src="@drawable/ic_moon" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -180,14 +180,6 @@ class OneDayDailyForecasts(
             val snow: Snow,
             @SerializedName("Ice")
             val ice: Ice,
-            @SerializedName("HoursOfPrecipitation")
-            val hoursOfPP: Float? = 0.0f,
-            @SerializedName("HoursOfRain")
-            val hoursOfRain: Float? = 0.0f,
-            @SerializedName("HoursOfSnow")
-            val hoursOfSnow: Float? = 0.0f,
-            @SerializedName("HoursOfIce")
-            val hoursOfIce: Float? = 0.0f,
             @SerializedName("CloudCover")
             val cloudCover: Float? = 0.0f
         ) {
@@ -307,14 +299,6 @@ class OneDayDailyForecasts(
             val snow: Snow,
             @SerializedName("Ice")
             val ice: Ice,
-            @SerializedName("HoursOfPrecipitation")
-            val hoursOfPP: Float? = 0.0f,
-            @SerializedName("HoursOfRain")
-            val hoursOfRain: Float? = 0.0f,
-            @SerializedName("HoursOfSnow")
-            val hoursOfSnow: Float? = 0.0f,
-            @SerializedName("HoursOfIce")
-            val hoursOfIce: Float? = 0.0f,
             @SerializedName("CloudCover")
             val cloudCover: Float? = 0.0f
         ) {

@@ -140,7 +140,7 @@
                         android:text="@string/default_number"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_largest"
-                        app:drawableEndCompat="@drawable/line"
+                        app:drawableEndCompat="@drawable/line_vertical"
                         app:drawableStartCompat="@drawable/ic_sun" />
 
 
@@ -152,7 +152,7 @@
                         android:text="@string/default_number"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_largest"
-                        app:drawableEndCompat="@drawable/line" />
+                        app:drawableEndCompat="@drawable/line_vertical" />
 
                 </LinearLayout>
 

@@ -7,11 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activity.HomeActivity"
+    tools:context=".activity.ActivityHome"
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_main"
+        layout="@layout/bar_home"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
@@ -22,6 +22,6 @@
         android:layout_gravity="start"
         android:background="@color/blue_light"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
+        app:menu="@menu/menu_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
