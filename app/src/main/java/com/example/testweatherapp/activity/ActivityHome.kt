@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_search.view.*
 import kotlinx.android.synthetic.main.bar_home.*
 import kotlinx.android.synthetic.main.fragment_weather.*
-import kotlinx.android.synthetic.main.recycler_view_search_result.view.*
+import kotlinx.android.synthetic.main.recycler_row_search_result.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -203,8 +203,8 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val service = retrofit.create(AccuWeather::class.java)
         service.getForecasts1Day(locationKey, Search.apiKey, Search.language, "true", "true")
             .enqueue(
-                object : Callback<OneDayDailyForecasts> {
-                    override fun onFailure(call: Call<OneDayDailyForecasts>, t: Throwable) {
+                object : Callback<FiveDayForecasts> {
+                    override fun onFailure(call: Call<FiveDayForecasts>, t: Throwable) {
                         Toast.makeText(
                             this@ActivityHome,
                             "Unable to find location",
@@ -214,20 +214,16 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
 
                     override fun onResponse(
-                        call: Call<OneDayDailyForecasts>,
-                        response: Response<OneDayDailyForecasts>
+                        call: Call<FiveDayForecasts>,
+                        response: Response<FiveDayForecasts>
                     ) {
                         if (response.code() == Search.requestCode) {
-                            val oneDayDailyForecasts = response.body() ?: return
+                            val fiveDayForecasts = response.body() ?: return
 
-                            degreeFragment.onUpdate(
-                                oneDayDailyForecasts.dailyForecasts.first(),
-                                oneDayDailyForecasts.headLine.severity.toString(),
-                                oneDayDailyForecasts.headLine.text!!
-                            )
-                            airAndPollenFragment.onUpdate(oneDayDailyForecasts.dailyForecasts.first().listOfAirAndPollen)
-                            dayDetailsFragment.onUpdate(oneDayDailyForecasts.dailyForecasts.first())
-                            weatherFragment.onUpdate(oneDayDailyForecasts.dailyForecasts.first() )
+                            degreeFragment.onUpdate(fiveDayForecasts)
+                            airAndPollenFragment.onUpdate(fiveDayForecasts.dailyForecasts.first().listOfAirAndPollen)
+                            dayDetailsFragment.onUpdate(fiveDayForecasts.dailyForecasts.first())
+                            weatherFragment.onUpdate(fiveDayForecasts.dailyForecasts.first() )
                         }
                     }
                 }
@@ -294,7 +290,7 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view =
-                View.inflate(this@ActivityHome, R.layout.recycler_view_search_result, null)
+                View.inflate(this@ActivityHome, R.layout.recycler_row_search_result, null)
             return ViewHolder(view)
         }
 

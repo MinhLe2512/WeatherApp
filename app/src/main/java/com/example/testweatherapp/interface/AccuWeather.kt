@@ -1,7 +1,7 @@
 package com.example.testweatherapp.`interface`
 
 import com.example.testweatherapp.model.City
-import com.example.testweatherapp.model.OneDayDailyForecasts
+import com.example.testweatherapp.model.FiveDayForecasts
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,12 +15,12 @@ interface AccuWeather {
         @Query("language") lan: String
     ): Call<List<City>>
 
-    @GET("forecasts/v1/daily/1day/{locationKey}")
+    @GET("forecasts/v1/daily/5day/{locationKey}")
     fun getForecasts1Day(
         @Path("locationKey") locationKey: String?,
         @Query("apikey") apikey: String,
         @Query("language") lan: String,
         @Query("details") det: String,
         @Query("metric") met: String
-    ): Call<OneDayDailyForecasts>
+    ): Call<FiveDayForecasts>
 }

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_light"
-    android:padding="@dimen/spacing_normal">
+    android:layout_margin="@dimen/spacing_normal"
+    android:padding="@dimen/spacing_normal"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="@dimen/spacing_normal"
+    app:cardElevation="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        tools:ignore="UselessParent">
+        android:layout_marginTop="@dimen/spacing_normal">
 
         <ImageView
             android:id="@+id/img_btn"
@@ -45,11 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_large"
-                    android:fontFamily="sans-serif-black"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/rise_set"
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
@@ -61,11 +59,7 @@
                     android:id="@+id/sun_rise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/default_number"
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
@@ -75,11 +69,7 @@
                     android:id="@+id/sun_set"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/default_number"
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
@@ -101,11 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_large"
-                    android:fontFamily="sans-serif-black"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/rise_set"
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
@@ -117,11 +103,7 @@
                     android:id="@+id/moon_rise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/default_number"
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
@@ -131,11 +113,7 @@
                     android:id="@+id/moon_set"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/default_number"
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
@@ -169,11 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto_thin"
                     android:text="@string/precipitation"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
@@ -184,9 +158,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/default_number"
                     android:textAlignment="textStart"
-                    android:textColor="@color/yellow"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_larger" />
 
                 <TextView
@@ -194,11 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/precipitationProb"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
@@ -208,9 +179,10 @@
                     android:id="@+id/precipitationProbDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_thin"
                     android:text="@string/default_number"
                     android:textAlignment="textStart"
-                    android:textColor="@color/yellow"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_larger" />
             </LinearLayout>
 
@@ -226,11 +198,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto_thin"
                     android:text="@string/precipitation"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
@@ -242,9 +210,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/default_number"
                     android:textAlignment="textStart"
-                    android:textColor="@color/yellow"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_larger" />
 
                 <TextView
@@ -252,11 +221,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_normal"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="1"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/precipitationProb"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
@@ -266,9 +231,10 @@
                     android:id="@+id/precipitationProbNight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_thin"
                     android:text="@string/default_number"
                     android:textAlignment="textStart"
-                    android:textColor="@color/yellow"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_larger" />
 
             </LinearLayout>
@@ -280,7 +246,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_weather"
             android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:fontFamily="@font/roboto"
             android:text="@string/more_dtl"
             android:textColor="@color/white"
             android:textSize="@dimen/font_large" />
@@ -292,6 +258,6 @@
             android:background="@android:color/transparent"
             android:src="@drawable/ic_down" />
     </RelativeLayout>
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
 
 

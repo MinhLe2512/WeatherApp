@@ -7,28 +7,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.testweatherapp.R
-import com.example.testweatherapp.model.OneDayDailyForecasts
+import com.example.testweatherapp.model.FiveDayForecasts
 import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
 
 class FragmentWeather : Fragment() {
-    private lateinit var obj: OneDayDailyForecasts.DailyForecasts
+    private lateinit var obj: FiveDayForecasts.DailyForecasts
     private var isDay: Boolean = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = View.inflate(context, R.layout.fragment_weather, null)
+        view.btn_switch.visibility = View.GONE
         view.btn_switch.setOnClickListener {
-            isDay = if (!isDay) {
-                nightUpdate()
-                true
-            } else {
-                dayUpdate()
-                false
-            }
+            Swap()
         }
         return view
     }
-    fun onUpdate(dayNight: OneDayDailyForecasts.DailyForecasts) {
+    fun onUpdate(dayNight: FiveDayForecasts.DailyForecasts) {
         obj = dayNight
+        Swap()
+        btn_switch.visibility = View.VISIBLE
+    }
+
+    fun Swap() {
         isDay = if (!isDay) {
             nightUpdate()
             true
@@ -37,7 +37,6 @@ class FragmentWeather : Fragment() {
             false
         }
     }
-
     @SuppressLint("SetTextI18n")
     fun dayUpdate(
     ) {

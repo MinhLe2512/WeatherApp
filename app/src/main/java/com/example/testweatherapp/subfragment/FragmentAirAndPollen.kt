@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testweatherapp.R
-import com.example.testweatherapp.model.OneDayDailyForecasts
+import com.example.testweatherapp.model.FiveDayForecasts
 import kotlinx.android.synthetic.main.recycler_view_air_polluten.*
 import kotlinx.android.synthetic.main.recycler_view_air_polluten_row.view.*
 
 
 class FragmentAirAndPollen() : Fragment() {
-    private var listAirPollutant: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen>? = null
+    private var listAirPollutant: List<FiveDayForecasts.DailyForecasts.AirAndPollen>? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,7 +26,7 @@ class FragmentAirAndPollen() : Fragment() {
     }
 
 
-    fun onUpdate(newList: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen>) {
+    fun onUpdate(newList: List<FiveDayForecasts.DailyForecasts.AirAndPollen>) {
         listAirPollutant = newList
         rc_view_air_pollutant.adapter?.notifyDataSetChanged()
         rc_view_air_pollutant.apply {
@@ -54,7 +54,7 @@ class FragmentAirAndPollen() : Fragment() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    inner class AirAndPollenRecycler(private val listAirPollutant: List<OneDayDailyForecasts.DailyForecasts.AirAndPollen>) :
+    inner class AirAndPollenRecycler(private val listAirPollutant: List<FiveDayForecasts.DailyForecasts.AirAndPollen>) :
         RecyclerView.Adapter<ViewHolder>() {
 
         override fun onCreateViewHolder(

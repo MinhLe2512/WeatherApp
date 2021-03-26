@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.testweatherapp.R
-import com.example.testweatherapp.model.OneDayDailyForecasts
+import com.example.testweatherapp.model.FiveDayForecasts
 import kotlinx.android.synthetic.main.fragment_today_details.*
 import java.text.SimpleDateFormat
 
@@ -24,7 +24,7 @@ class FragmentDayDetails : Fragment() {
         return inflater.inflate(R.layout.fragment_today_details, container, false)
     }
 
-    fun onUpdate(obj: OneDayDailyForecasts.DailyForecasts) {
+    fun onUpdate(obj: FiveDayForecasts.DailyForecasts) {
         val date = formatter.parse(obj.sun.rise)
         sun_rise.text = formatter2.format(date)
 

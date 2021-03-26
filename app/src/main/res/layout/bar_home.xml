@@ -4,13 +4,16 @@
     android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sunset"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/blue_light"
+        android:layout_margin="@dimen/spacing_normal"
+        android:alpha="0.1"
+        android:background="@color/white"
         android:elevation="4dp"
         android:theme="@style/Theme.TestWeatherApp"
         app:popupTheme="@style/Theme.TestWeatherApp" />
@@ -19,7 +22,6 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue_dark"
         android:padding="@dimen/spacing_large">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,17 +29,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:background="@color/blue_light"
+            android:backgroundTint="@color/blue_light"
             android:contentDescription="@string/str_search"
-            android:src="@drawable/ic_more"
-            />
+            android:src="@drawable/ic_more" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:background="@color/blue_light"
+            android:backgroundTint="@color/blue_light"
             android:contentDescription="@string/str_search"
             android:src="@drawable/ic_thermostat" />
 
@@ -46,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:background="@color/blue_light"
+            android:backgroundTint="@color/blue_light"
             android:contentDescription="@string/str_search"
             android:src="@drawable/ic_search" />
 
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:background="@color/blue_light"
+            android:backgroundTint="@color/blue_light"
             android:contentDescription="@string/str_search"
             android:src="@drawable/ic_add"
             app:fabCustomSize="@dimen/fab" />

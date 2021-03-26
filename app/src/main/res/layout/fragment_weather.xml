@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/blue_light"
-    android:padding="@dimen/spacing_large"
-    app:cardCornerRadius="@dimen/spacing_normal">
+    android:layout_margin="@dimen/spacing_normal"
+    android:padding="@dimen/spacing_normal">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent">
 
         <TextView
             android:id="@+id/txt_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/white"
             android:textSize="@dimen/rf_min" />
 
@@ -28,6 +29,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/spacing_normal"
             android:layout_marginBottom="@dimen/spacing_large"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/white"
             android:textSize="@dimen/font_large" />
 
@@ -45,6 +47,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="3"
+                android:fontFamily="@font/roboto"
                 android:text="@string/thunder_storm"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
@@ -56,6 +59,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="2"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 app:drawableBottomCompat="@drawable/line_horizontal" />
@@ -76,6 +80,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="3"
+                android:fontFamily="@font/roboto"
                 android:text="@string/rain"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
@@ -89,7 +94,8 @@
                 android:layout_weight="2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
-                app:drawableBottomCompat="@drawable/line_horizontal" />
+                app:drawableBottomCompat="@drawable/line_horizontal"
+                android:fontFamily="@font/roboto"/>
 
         </LinearLayout>
 
@@ -107,6 +113,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="3"
+                android:fontFamily="@font/roboto"
                 android:text="@string/snow"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
@@ -118,6 +125,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="2"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 app:drawableBottomCompat="@drawable/line_horizontal" />
@@ -138,6 +146,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="3"
+                android:fontFamily="@font/roboto"
                 android:text="@string/ice"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
@@ -149,6 +158,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="2"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 app:drawableBottomCompat="@drawable/line_horizontal" />
@@ -169,6 +179,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="3"
+                android:fontFamily="@font/roboto"
                 android:text="@string/wind"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
@@ -180,6 +191,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="2"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 app:drawableBottomCompat="@drawable/line_horizontal" />
@@ -199,6 +211,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="3"
+                android:fontFamily="@font/roboto"
                 android:text="@string/wind_gust"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
@@ -211,6 +224,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:layout_weight="2"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 app:drawableBottomCompat="@drawable/line_horizontal" />
@@ -218,12 +232,13 @@
         </LinearLayout>
 
         <TextView
+            android:layout_marginTop="@dimen/spacing_large"
             android:id="@+id/txt_more_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_wind_gust"
             android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:fontFamily="@font/roboto"
             android:text="@string/more_dtl"
             android:textColor="@color/white"
             android:textSize="@dimen/font_large" />
@@ -252,4 +267,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

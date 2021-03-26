@@ -4,7 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-class OneDayDailyForecasts(
+class FiveDayForecasts(
     @SerializedName("Headline")
     val headLine: Headline,
     @SerializedName("DailyForecasts")
@@ -13,8 +13,6 @@ class OneDayDailyForecasts(
     class Headline(
         @SerializedName("EffectiveDate")
         val effectiveDate: String? = null,
-        @SerializedName("EffectiveEpochDate")
-        val effectiveEpochDate: Long? = 0,
         @SerializedName("Severity")
         val severity: Long? = 0,
         @SerializedName("Text")
