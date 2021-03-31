@@ -1,39 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/spacing_fab"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@android:color/transparent"
-    app:cardElevation="0dp">
+    android:layout_marginLeft="@dimen/spacing_large"
+    android:layout_marginRight="@dimen/spacing_large"
+    app:cardCornerRadius="@dimen/spacing_large">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_1"
+        android:padding="@dimen/spacing_tiny">
 
         <TextView
             android:id="@+id/txt_min_degree_rc_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/roboto"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_larger" />
 
         <TextView
             android:id="@+id/txt_max_degree_rc_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_min_degree_rc_view"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/roboto"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_large" />
 
         <TextView
             android:id="@+id/txt_date_rc_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_max_degree_rc_view"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/spacing_large"
             android:fontFamily="@font/roboto"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_large" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

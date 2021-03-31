@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_margin="@dimen/spacing_normal"
-        android:background="@color/background_blue"
+        android:alpha="0.1"
+        android:background="@color/white"
         android:elevation="4dp"
         android:theme="@style/Theme.TestWeatherApp"
         app:popupTheme="@style/Theme.TestWeatherApp" />
@@ -20,7 +21,8 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_large">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_mode"
@@ -29,7 +31,8 @@
             android:layout_gravity="bottom|end"
             android:backgroundTint="@color/blue_light"
             android:contentDescription="@string/str_search"
-            android:src="@drawable/ic_more" />
+            android:src="@drawable/ic_more"
+            android:outlineSpotShadowColor="@android:color/transparent"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_unit"
@@ -47,7 +50,7 @@
             android:layout_gravity="bottom|end"
             android:backgroundTint="@color/blue_light"
             android:contentDescription="@string/str_search"
-            android:src="@drawable/ic_search"/>
+            android:src="@drawable/ic_search" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_add"

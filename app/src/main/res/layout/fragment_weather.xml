@@ -197,6 +197,10 @@
                 app:drawableBottomCompat="@drawable/line_horizontal" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
         <LinearLayout
             android:id="@+id/linear_wind_gust"
             android:layout_width="match_parent"
@@ -260,10 +264,9 @@
             android:layout_marginTop="@dimen/spacing_large"
             android:layout_marginEnd="@dimen/spacing_larger"
             android:layout_marginBottom="@dimen/spacing_huge"
-            android:background="@android:color/transparent"
+            android:background="@drawable/ic_sun"
             android:scaleX="3"
-            android:scaleY="3"
-            android:src="@drawable/ic_moon" />
+            android:scaleY="3" />
 
     </RelativeLayout>
 

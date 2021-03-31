@@ -45,7 +45,6 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var view: View
     private lateinit var puWindow: PopupWindow
 
-
     private var degreeFragment = FragmentDegree()
     private var airAndPollenFragment = FragmentAirAndPollen()
     private var dayDetailsFragment = FragmentDayDetails()
@@ -55,62 +54,15 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var isCelsius = false
     private var degreeUnit = false
 
-    @RequiresApi(Build.VERSION_CODES.N)
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        btn_add.setOnClickListener {
-            if (!isFABOpen) {
-                openFABMenu()
-                btn_search.setOnClickListener {
-                    puWindow = PopupWindow(this@ActivityHome)
-                    view =
-                        View.inflate(this@ActivityHome, R.layout.activity_search, null)
-                    puWindow.isFocusable = true
-                    puWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    puWindow.contentView = view
-                    puWindow.enterTransition = Slide(Gravity.END)
-                    puWindow.showAtLocation(view, Gravity.CENTER, 0, -3000)
+        setUpAddButton()
+        listSth = listOf(degreeFragment, airAndPollenFragment, dayDetailsFragment, weatherFragment)
 
-                    main_activity.alpha = 0.5f
-                    searching(view.searchViewQuery)
-                    puWindow.setOnDismissListener {
-                        main_activity.alpha = 1f
-                    }
-                }
-                btn_unit.setOnClickListener {
-                    isCelsius = if (!isCelsius) {
-                        degreeUnit = false
-                        Toast.makeText(
-                            this,
-                            resources.getString(R.string.degreeFah),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        true
-                    } else {
-                        degreeUnit = true
-                        Toast.makeText(
-                            this,
-                            resources.getString(R.string.degreeCel),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        false
-                    }
-                }
-            } else closeFABMenu()
-        }
-        listSth = listOf(
-            degreeFragment,
-            airAndPollenFragment,
-            dayDetailsFragment,
-            weatherFragment
-        )
-
-        val adapter = ViewPagerMainAdapter(
-            listSth,
-            supportFragmentManager
-        )
+        val adapter = ViewPagerMainAdapter(listSth, supportFragmentManager)
 
         view_pager_main.adapter = adapter
         view_pager_main.offscreenPageLimit = 4
@@ -120,6 +72,8 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onItemClicked(city: City) {
         Toast.makeText(this@ActivityHome, city.LocalizedName, Toast.LENGTH_SHORT).show()
         setUpOneDayForeCasts(city.Key)
+        if(isFABOpen)
+            closeFABMenu()
         puWindow.dismiss()
     }
 
@@ -154,7 +108,6 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun searching(searchView: androidx.appcompat.widget.SearchView) {
-        //val searchView = search?.actionView as SearchView
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -186,10 +139,8 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     if (listCities.isNullOrEmpty())
                         return
 
-                    view.recycleView.adapter =
-                        SearchBarAdapter(listCities, this@ActivityHome)
+                    view.recycleView.adapter = SearchBarAdapter(listCities, this@ActivityHome)
                     view.recycleView.layoutManager = LinearLayoutManager(this@ActivityHome)
-//                    view.recycleView.isNestedScrollingEnabled = false
                 }
             }
         })
@@ -205,11 +156,7 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .enqueue(
                 object : Callback<FiveDayForecasts> {
                     override fun onFailure(call: Call<FiveDayForecasts>, t: Throwable) {
-                        Toast.makeText(
-                            this@ActivityHome,
-                            "Unable to find location",
-                            Toast.LENGTH_SHORT
-                        )
+                        Toast.makeText(this@ActivityHome, "Unable to find location", Toast.LENGTH_SHORT)
                             .show()
                     }
 
@@ -233,19 +180,25 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun openFABMenu() {
         isFABOpen = true
         btn_add.animate().rotation(360f).duration = 360
-        btn_search.animate().translationY(-resources.getDimension(R.dimen.spacing_fab)).duration =
-            200
-        btn_unit.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 2).duration =
-            220
-        btn_mode.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 3).duration =
-            240
+        btn_search.animate().translationY(-resources.getDimension(R.dimen.spacing_fab)).duration = 200
+        btn_search.animate().alpha(1f).duration = 200
+
+        btn_unit.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 2).duration = 220
+        btn_unit.animate().alpha(1f).duration = 220
+
+        btn_mode.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 3).duration = 240
+        btn_mode.animate().alpha(1f).duration = 240
+
     }
 
     private fun closeFABMenu() {
         isFABOpen = false
         btn_mode.animate().translationY(0f)
+        btn_mode.animate().alpha(0f)
         btn_unit.animate().translationY(0f)
+        btn_unit.animate().alpha(0f)
         btn_search.animate().translationY(0f)
+        btn_search.animate().alpha(0f)
         btn_add.animate().rotation(0f)
     }
 
@@ -253,20 +206,52 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setUpActionBar() {
         setSupportActionBar(tool_bar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        //supportActionBar?.setTitle(R.string.str_help)
 
         nav_view.setNavigationItemSelectedListener(this)
-        val toggle = ActionBarDrawerToggle(
-            this,
-            drawer_layout,
-            tool_bar,
-            R.string.nav_drawer_open,
-            R.string.nav_drawer_close
-        )
+        val toggle = ActionBarDrawerToggle(this, drawer_layout, tool_bar, R.string.nav_drawer_open, R.string.nav_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun setUpAddButton() {
+        btn_add.setOnClickListener {
+            if (!isFABOpen) {
+                openFABMenu()
+                btn_search.setOnClickListener {
+                    puWindow = PopupWindow(this@ActivityHome)
+                    view =
+                        View.inflate(this@ActivityHome, R.layout.activity_search, null)
+                    puWindow.isFocusable = true
+                    puWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    puWindow.contentView = view
+                    puWindow.enterTransition = Slide(Gravity.END)
+                    puWindow.showAtLocation(view, Gravity.CENTER, 0, -3000)
+
+                    main_activity.alpha = 0.5f
+                    searching(view.searchViewQuery)
+                    closeFABMenu()
+                    puWindow.setOnDismissListener {
+                        main_activity.alpha = 1f
+                    }
+                }
+                btn_unit.setOnClickListener {
+                    closeFABMenu()
+                    isCelsius = if (!isCelsius) {
+                        degreeUnit = false
+                        Toast.makeText(this, resources.getString(R.string.degreeFah), Toast.LENGTH_SHORT)
+                            .show()
+                        true
+                    } else {
+                        degreeUnit = true
+                        Toast.makeText(this, resources.getString(R.string.degreeCel), Toast.LENGTH_SHORT)
+                            .show()
+                        false
+                    }
+                }
+            } else closeFABMenu()
+        }
+    }
     inner class ViewPagerMainAdapter(
         private var listlayouts: List<Fragment>,
         fragmentManager: FragmentManager

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testweatherapp.R
 import com.example.testweatherapp.model.FiveDayForecasts
 import kotlinx.android.synthetic.main.recycler_view_air_polluten.*
-import kotlinx.android.synthetic.main.recycler_view_air_polluten_row.view.*
+import kotlinx.android.synthetic.main.recycler_row_air_polluten.view.*
 
 
 class FragmentAirAndPollen() : Fragment() {
@@ -24,7 +24,6 @@ class FragmentAirAndPollen() : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.recycler_view_air_polluten, container, false)
     }
-
 
     fun onUpdate(newList: List<FiveDayForecasts.DailyForecasts.AirAndPollen>) {
         listAirPollutant = newList
@@ -63,7 +62,7 @@ class FragmentAirAndPollen() : Fragment() {
         ): ViewHolder {
             return ViewHolder(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.recycler_view_air_polluten_row, parent, false)
+                    .inflate(R.layout.recycler_row_air_polluten, parent, false)
             )
         }
 

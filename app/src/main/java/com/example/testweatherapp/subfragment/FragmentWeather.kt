@@ -17,28 +17,28 @@ class FragmentWeather : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = View.inflate(context, R.layout.fragment_weather, null)
         view.btn_switch.visibility = View.GONE
-        view.btn_switch.setOnClickListener {
-            Swap()
-        }
+        view.btn_switch.setOnClickListener { swap() }
         return view
     }
     fun onUpdate(dayNight: FiveDayForecasts.DailyForecasts) {
         obj = dayNight
-        Swap()
+        swap()
         btn_switch.visibility = View.VISIBLE
     }
 
-    fun Swap() {
+     private fun swap() {
         isDay = if (!isDay) {
             nightUpdate()
+            btn_switch.setBackgroundResource(R.drawable.ic_moon)
             true
         } else {
             dayUpdate()
+            btn_switch.setBackgroundResource(R.drawable.ic_sun)
             false
         }
     }
     @SuppressLint("SetTextI18n")
-    fun dayUpdate(
+    private fun dayUpdate(
     ) {
         thunder_storm_prob_value.text = obj.day.thunderStormProbability.toString()
         rain_prob_value.text = obj.day.rainProbability.toString()
@@ -51,7 +51,7 @@ class FragmentWeather : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun nightUpdate(
+    private fun nightUpdate(
     ) {
         thunder_storm_prob_value.text = obj.night.thunderStormProbability.toString()
         rain_prob_value.text = obj.night.rainProbability.toString()
@@ -60,6 +60,6 @@ class FragmentWeather : Fragment() {
         wind_speed_value.text =
             obj.night.wind.speed.value.toString() + obj.night.wind.speed.unit.toString()
         wind_gust_speed_value.text =
-            obj.night.windGust.speed.value.toString() + obj.night.windGust.speed.unit.toString()
+            obj.night.windGust.speed.value.toString() + obj.night.wind.speed.unit.toString()
     }
 }

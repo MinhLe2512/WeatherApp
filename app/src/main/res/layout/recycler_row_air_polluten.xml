@@ -4,15 +4,15 @@
     android:id="@+id/card_view_air_pollutant"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/blue_light"
-    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="@dimen/spacing_normal"
-    app:cardElevation="0dp">
+    app:cardElevation="0dp"
+    app:cardPreventCornerOverlap="false">
 
     <RelativeLayout
         android:id="@+id/rlt_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradient_1"
         android:paddingStart="@dimen/spacing_normal"
         android:paddingTop="@dimen/spacing_normal"
         android:paddingEnd="@dimen/spacing_normal">
@@ -65,3 +65,4 @@
             android:textColor="@color/white" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
+
