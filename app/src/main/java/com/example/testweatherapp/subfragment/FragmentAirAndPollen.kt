@@ -22,7 +22,7 @@ class FragmentAirAndPollen() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.recycler_view_air_polluten, container, false)
+        return inflater.inflate(R.layout.frament_air_polluten, container, false)
     }
 
     fun onUpdate(newList: List<FiveDayForecasts.DailyForecasts.AirAndPollen>) {

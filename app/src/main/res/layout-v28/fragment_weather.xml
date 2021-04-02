@@ -16,6 +16,7 @@
             android:layout_width="@dimen/grid"
             android:layout_height="@dimen/grid"
             android:layout_margin="@dimen/spacing_normal"
+            android:outlineAmbientShadowColor="@color/blue_dark"
             app:cardBackgroundColor="@color/background_blue"
             app:cardCornerRadius="@dimen/spacing_normal">
 
@@ -52,6 +53,7 @@
             android:layout_height="@dimen/grid"
             android:layout_margin="@dimen/spacing_normal"
             android:layout_toEndOf="@id/card_view_1"
+            android:outlineAmbientShadowColor="@color/blue_dark"
             app:cardBackgroundColor="@color/background_pink"
             app:cardCornerRadius="@dimen/spacing_normal">
 
@@ -89,6 +91,7 @@
             android:layout_height="@dimen/grid"
             android:layout_margin="@dimen/spacing_normal"
             android:layout_toEndOf="@id/card_view_2"
+            android:outlineAmbientShadowColor="@color/blue_dark"
             app:cardBackgroundColor="@color/background_blue"
             app:cardCornerRadius="@dimen/spacing_normal">
 
@@ -126,6 +129,7 @@
             android:layout_height="@dimen/grid"
             android:layout_below="@id/card_view_1"
             android:layout_margin="@dimen/spacing_normal"
+            android:outlineAmbientShadowColor="@color/blue_dark"
             app:cardBackgroundColor="@color/background_pink"
             app:cardCornerRadius="@dimen/spacing_normal">
 
@@ -163,6 +167,7 @@
             android:layout_below="@id/card_view_2"
             android:layout_margin="@dimen/spacing_normal"
             android:layout_toEndOf="@id/card_view_4"
+            android:outlineAmbientShadowColor="@color/blue_dark"
             app:cardBackgroundColor="@color/background_blue"
             app:cardCornerRadius="@dimen/spacing_normal">
 
@@ -199,6 +204,7 @@
             android:layout_below="@id/card_view_3"
             android:layout_margin="@dimen/spacing_normal"
             android:layout_toEndOf="@id/card_view_5"
+            android:outlineAmbientShadowColor="@color/blue_dark"
             app:cardBackgroundColor="@color/background_pink"
             app:cardCornerRadius="@dimen/spacing_normal">
 

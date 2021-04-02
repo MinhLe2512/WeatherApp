@@ -6,6 +6,10 @@
     <dimen name="spacing_large">19.5dp</dimen>
     <dimen name="spacing_larger">27dp</dimen>
     <dimen name="spacing_huge">36dp</dimen>
+    <dimen name="fab">64dp</dimen>
+    <dimen name="spacing_fab">75dp</dimen>
+    <dimen name="grid">100dp</dimen>
+    <dimen name="ic_button">200dp</dimen>
 
     <!-- Global font size data -->
     <dimen name="font_smallest">7.5sp</dimen>
@@ -15,4 +19,8 @@
     <dimen name="font_larger">16.5sp</dimen>
     <dimen name="font_largest">19.5sp</dimen>
     <dimen name="font_huge">31.5sp</dimen>
+    <dimen name="min_degree_txt">100sp</dimen>
+    <dimen name="max_degree_txt">50sp</dimen>
+    <dimen name="rf_min">40sp</dimen>
+    <dimen name="rf_max">30sp</dimen>
 </resources>

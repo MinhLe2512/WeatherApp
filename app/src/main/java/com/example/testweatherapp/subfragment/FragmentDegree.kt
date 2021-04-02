@@ -32,15 +32,16 @@ class FragmentDegree() : Fragment() {
         minimum_degree.text = obj.dailyForecasts.first().temperature.minimum.value.toString()
         maximum_degree.text = obj.dailyForecasts.first().temperature.maximum.value.toString()
         unit_type.text = obj.dailyForecasts.first().temperature.minimum.unit.toString()
-        degree_day.text = obj.dailyForecasts.first().rfTemperature.maximum.value.toString()
-        degree_night.text = obj.dailyForecasts.first().rfTemperature.minimum.value.toString()
+        degreeDayTxt.text = obj.dailyForecasts.first().rfTemperature.maximum.value.toString()
+        degreeNightTxt.text = obj.dailyForecasts.first().rfTemperature.minimum.value.toString()
         val date = formatterDefault.parse(obj.headLine.effectiveDate!!)
-        txt_date.text = formatter.format(date!!)
+        txtDate.text = formatter.format(date!!)
         note_content.text = obj.headLine.text
 
         listFourDays = obj.dailyForecasts
         rc_view_4_days.adapter = FourDaysRecyclerAdapter(listFourDays)
         rc_view_4_days.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rc_view_4_days.clipChildren = false
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

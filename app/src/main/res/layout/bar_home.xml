@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sunset"
+    android:backgroundTint="@color/light_gray"
+    android:backgroundTintMode="multiply"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar

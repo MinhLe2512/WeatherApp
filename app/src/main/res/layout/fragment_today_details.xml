@@ -140,24 +140,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/txt_more_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linear_weather"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/roboto"
-            android:text="@string/more_dtl"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_large" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_more_details"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_down" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
 

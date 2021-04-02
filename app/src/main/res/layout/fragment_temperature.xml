@@ -1,249 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/degree_layout"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/roboto"
+        android:text="@string/default_number"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_large" />
+
+    <RelativeLayout
+        android:id="@+id/min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtDate"
+        android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/txt_date"
+            android:id="@+id/minimum_degree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/roboto"
-            android:text="@string/default_number"
+            android:fontFamily="@font/roboto_thin"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_large" />
+            android:textSize="@dimen/min_degree_txt"
+            tools:text="34" />
 
-        <LinearLayout
-            android:id="@+id/min"
+        <TextView
+            android:id="@+id/degreeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_date"
-            android:layout_centerHorizontal="true"
-            android:weightSum="2">
+            android:layout_toEndOf="@id/minimum_degree"
+            android:fontFamily="@font/roboto_thin"
+            android:text="@string/degree"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_huge" />
 
-            <TextView
-                android:id="@+id/minimum_degree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto_thin"
-                android:text="@string/default_number"
-                android:textColor="@color/white"
-                android:textSize="@dimen/min_degree_txt" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_tiny"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/spacing_normal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_thin"
-                    android:text="@string/degree"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_huge" />
-
-                <TextView
-                    android:id="@+id/unit_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_thin"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_huge" />
-
-            </LinearLayout>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/unit_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/degreeTxt"
+            android:layout_alignBottom="@id/minimum_degree"
+            android:fontFamily="@font/roboto_thin"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_huge"
+            tools:text="C" />
 
         <TextView
             android:id="@+id/maximum_degree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/min"
+            android:layout_below="@id/minimum_degree"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-40dp"
             android:fontFamily="@font/roboto_thin"
-            android:padding="@dimen/spacing_normal"
-            android:text="@string/default_number"
             android:textColor="@color/white"
-            android:textSize="@dimen/max_degree_txt" />
-
-        <LinearLayout
-            android:id="@+id/day_night"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/maximum_degree"
-            android:layout_marginStart="@dimen/spacing_large"
-            android:layout_marginEnd="@dimen/spacing_large"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto"
-                android:text="@string/day"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_larger" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_small"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto"
-                android:text="@string/night"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_larger" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_layout_day_night"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/day_night"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:id="@+id/real_feel_day"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_large"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:id="@+id/degree_day"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/default_number"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_largest"
-                    app:drawableEndCompat="@drawable/line_vertical"
-                    app:drawableStartCompat="@drawable/ic_sun" />
-
-
-                <TextView
-                    android:id="@+id/real_feel_max"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/default_number"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_largest"
-                    app:drawableEndCompat="@drawable/line_vertical" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/real_feel_night"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_small"
-                android:layout_marginEnd="@dimen/spacing_large"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/degree_night"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/default_number"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_largest"
-                    app:drawableStartCompat="@drawable/ic_moon" />
-
-
-                <TextView
-                    android:id="@+id/real_feel_min"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/default_number"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_largest" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_view_degree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linear_layout_day_night"
-            android:layout_margin="@dimen/spacing_normal"
-            app:cardCornerRadius="@dimen/spacing_normal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/gradient_1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_normal"
-                    android:fontFamily="@font/roboto_thin"
-                    android:text="@string/note"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_large" />
-
-                <TextView
-                    android:id="@+id/note_content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_normal"
-                    android:fontFamily="@font/roboto_thin"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_large" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_view_4_days"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/card_view_degree"
-            android:orientation="horizontal" />
-
-        <TextView
-            android:id="@+id/txt_more_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rc_view_4_days"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/roboto"
-            android:text="@string/more_dtl"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_large" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_more_details"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_down" />
+            android:textSize="@dimen/max_degree_txt"
+            tools:text="23" />
     </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/min"
+        android:layout_marginStart="@dimen/spacing_larger"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_larger"
+        android:background="@color/white" />
+
+
+    <LinearLayout
+        android:id="@+id/dayNightContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingEnd="@dimen/spacing_normal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/titleDayTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:fontFamily="@font/roboto_thin"
+                android:text="@string/day"
+                android:textSize="@dimen/font_large" />
+
+            <ImageView
+                android:id="@+id/dayImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleDayTxt"
+                android:src="@drawable/ic_sun" />
+
+            <TextView
+                android:id="@+id/degreeDayTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleDayTxt"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:layout_toEndOf="@+id/dayImg"
+                android:fontFamily="@font/roboto_thin"
+                android:textSize="@dimen/font_large"
+                tools:text="8" />
+
+            <TextView
+                android:id="@+id/txtRealFeelDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dayImg"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:fontFamily="@font/roboto_thin"
+                android:textSize="@dimen/font_large"
+                tools:text="34" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:background="@color/white" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/titleNightTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:fontFamily="@font/roboto_thin"
+                android:text="@string/night"
+                android:textSize="@dimen/font_large" />
+
+            <ImageView
+                android:id="@+id/nightImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleNightTxt"
+                android:src="@drawable/ic_moon" />
+
+            <TextView
+                android:id="@+id/degreeNightTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleNightTxt"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:layout_toEndOf="@id/nightImg"
+                android:fontFamily="@font/roboto_thin"
+                android:textSize="@dimen/font_large"
+                tools:text="34" />
+
+            <TextView
+                android:id="@+id/realFeelNightTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nightImg"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:fontFamily="@font/roboto_thin"
+                android:textSize="@dimen/font_large"
+                tools:text="34" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_degree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dayNightContainer"
+        android:layout_marginStart="@dimen/spacing_larger"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_larger"
+        app:cardCornerRadius="@dimen/spacing_normal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:fontFamily="@font/roboto_thin"
+                android:text="@string/note"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large" />
+
+            <TextView
+                android:id="@+id/note_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:fontFamily="@font/roboto_thin"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_view_4_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_view_degree"
+        android:layout_marginStart="@dimen/spacing_larger"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_larger"
+        android:orientation="horizontal" />
+
+
 </RelativeLayout>

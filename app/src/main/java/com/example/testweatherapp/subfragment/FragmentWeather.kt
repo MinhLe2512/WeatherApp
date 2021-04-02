@@ -38,28 +38,26 @@ class FragmentWeather : Fragment() {
         }
     }
     @SuppressLint("SetTextI18n")
-    private fun dayUpdate(
-    ) {
-        thunder_storm_prob_value.text = obj.day.thunderStormProbability.toString()
-        rain_prob_value.text = obj.day.rainProbability.toString()
-        snow_prob_value.text = obj.day.snowProbability.toString()
-        ice_prob_value.text = obj.day.iceProbability.toString()
-        wind_speed_value.text =
+    private fun dayUpdate() {
+        txtThunderStormValue.text = obj.day.thunderStormProbability.toString() + '%'
+        txtRainValue.text = obj.day.rainProbability.toString() + '%'
+        txtSnowValue.text = obj.day.snowProbability.toString() + '%'
+        txtIceValue.text = obj.day.iceProbability.toString() + '%'
+        txtWindSpeedValue.text =
             obj.day.wind.speed.value.toString() + obj.day.wind.speed.unit.toString()
-        wind_gust_speed_value.text =
+        txtWindGustValue.text =
             obj.day.windGust.speed.value.toString() + obj.day.windGust.speed.unit.toString()
     }
 
     @SuppressLint("SetTextI18n")
-    private fun nightUpdate(
-    ) {
-        thunder_storm_prob_value.text = obj.night.thunderStormProbability.toString()
-        rain_prob_value.text = obj.night.rainProbability.toString()
-        snow_prob_value.text = obj.night.snowProbability.toString()
-        ice_prob_value.text = obj.night.iceProbability.toString()
-        wind_speed_value.text =
+    private fun nightUpdate() {
+        txtThunderStormValue.text = obj.night.thunderStormProbability.toString() + '%'
+        txtRainValue.text = obj.night.rainProbability.toString() + '%'
+        txtSnowValue.text = obj.night.snowProbability.toString() + '%'
+        txtIceValue.text = obj.night.iceProbability.toString() + '%'
+        txtWindSpeedValue.text =
             obj.night.wind.speed.value.toString() + obj.night.wind.speed.unit.toString()
-        wind_gust_speed_value.text =
+        txtWindGustValue.text =
             obj.night.windGust.speed.value.toString() + obj.night.wind.speed.unit.toString()
     }
 }
