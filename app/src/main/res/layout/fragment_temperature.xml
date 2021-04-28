@@ -101,6 +101,7 @@
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:fontFamily="@font/roboto_thin"
                 android:text="@string/day"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_large" />
 
             <ImageView
@@ -118,6 +119,7 @@
                 android:layout_marginStart="@dimen/spacing_tiny"
                 android:layout_toEndOf="@+id/dayImg"
                 android:fontFamily="@font/roboto_thin"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 tools:text="8" />
 
@@ -128,6 +130,7 @@
                 android:layout_below="@id/dayImg"
                 android:layout_marginTop="@dimen/spacing_tiny"
                 android:fontFamily="@font/roboto_thin"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 tools:text="34" />
 
@@ -153,6 +156,7 @@
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:fontFamily="@font/roboto_thin"
                 android:text="@string/night"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_large" />
 
             <ImageView
@@ -170,6 +174,7 @@
                 android:layout_marginEnd="@dimen/spacing_tiny"
                 android:layout_toEndOf="@id/nightImg"
                 android:fontFamily="@font/roboto_thin"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 tools:text="34" />
 
@@ -180,6 +185,7 @@
                 android:layout_below="@+id/nightImg"
                 android:layout_marginStart="@dimen/spacing_tiny"
                 android:fontFamily="@font/roboto_thin"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_large"
                 tools:text="34" />
         </RelativeLayout>

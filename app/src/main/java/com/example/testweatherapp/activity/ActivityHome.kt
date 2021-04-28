@@ -51,8 +51,9 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var weatherFragment = FragmentWeather()
 
     private var isFABOpen = false
-    private var isCelsius = false
-    private var degreeUnit = false
+    private var isCelsius = true
+    private var degreeUnit = true
+    private lateinit var key: String
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +73,7 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onItemClicked(city: City) {
         Toast.makeText(this@ActivityHome, city.LocalizedName, Toast.LENGTH_SHORT).show()
         setUpOneDayForeCasts(city.Key)
-        if(isFABOpen)
+        if (isFABOpen)
             closeFABMenu()
         puWindow.dismiss()
     }
@@ -81,7 +82,7 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestCode && resultCode == Activity.RESULT_OK) {
-            val key = data?.getStringExtra("city_key")
+            key = data?.getStringExtra("city_key") ?: return
             setUpOneDayForeCasts(key)
         }
     }
@@ -152,11 +153,21 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val service = retrofit.create(AccuWeather::class.java)
-        service.getForecasts1Day(locationKey, Search.apiKey, Search.language, "true", "true")
+        service.getForecasts1Day(
+            locationKey,
+            Search.apiKey,
+            Search.language,
+            "true",
+            degreeUnit.toString()
+        )
             .enqueue(
                 object : Callback<FiveDayForecasts> {
                     override fun onFailure(call: Call<FiveDayForecasts>, t: Throwable) {
-                        Toast.makeText(this@ActivityHome, "Unable to find location", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            this@ActivityHome,
+                            "Unable to find location",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
 
@@ -170,7 +181,7 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             degreeFragment.onUpdate(fiveDayForecasts)
                             airAndPollenFragment.onUpdate(fiveDayForecasts.dailyForecasts.first().listOfAirAndPollen)
                             dayDetailsFragment.onUpdate(fiveDayForecasts.dailyForecasts.first())
-                            weatherFragment.onUpdate(fiveDayForecasts.dailyForecasts.first() )
+                            weatherFragment.onUpdate(fiveDayForecasts.dailyForecasts.first())
                         }
                     }
                 }
@@ -180,13 +191,16 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun openFABMenu() {
         isFABOpen = true
         btn_add.animate().rotation(360f).duration = 360
-        btn_search.animate().translationY(-resources.getDimension(R.dimen.spacing_fab)).duration = 200
+        btn_search.animate().translationY(-resources.getDimension(R.dimen.spacing_fab)).duration =
+            200
         btn_search.animate().alpha(1f).duration = 200
 
-        btn_unit.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 2).duration = 220
+        btn_unit.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 2).duration =
+            220
         btn_unit.animate().alpha(1f).duration = 220
 
-        btn_mode.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 3).duration = 240
+        btn_mode.animate().translationY(-resources.getDimension(R.dimen.spacing_fab) * 3).duration =
+            240
         btn_mode.animate().alpha(1f).duration = 240
 
     }
@@ -208,7 +222,13 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         nav_view.setNavigationItemSelectedListener(this)
-        val toggle = ActionBarDrawerToggle(this, drawer_layout, tool_bar, R.string.nav_drawer_open, R.string.nav_drawer_close)
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawer_layout,
+            tool_bar,
+            R.string.nav_drawer_open,
+            R.string.nav_drawer_close
+        )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
     }
@@ -231,27 +251,24 @@ class ActivityHome : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     main_activity.alpha = 0.5f
                     searching(view.searchViewQuery)
                     closeFABMenu()
-                    puWindow.setOnDismissListener {
-                        main_activity.alpha = 1f
-                    }
+                    puWindow.setOnDismissListener { main_activity.alpha = 1f }
                 }
                 btn_unit.setOnClickListener {
                     closeFABMenu()
-                    isCelsius = if (!isCelsius) {
+                    if (isCelsius) {
                         degreeUnit = false
-                        Toast.makeText(this, resources.getString(R.string.degreeFah), Toast.LENGTH_SHORT)
-                            .show()
-                        true
+                        setUpOneDayForeCasts(key)
+                        isCelsius = false
                     } else {
                         degreeUnit = true
-                        Toast.makeText(this, resources.getString(R.string.degreeCel), Toast.LENGTH_SHORT)
-                            .show()
-                        false
+                        setUpOneDayForeCasts(key)
+                        isCelsius = true
                     }
                 }
             } else closeFABMenu()
         }
     }
+
     inner class ViewPagerMainAdapter(
         private var listlayouts: List<Fragment>,
         fragmentManager: FragmentManager

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testweatherapp.R
 import com.example.testweatherapp.model.FiveDayForecasts
-import kotlinx.android.synthetic.main.recycler_view_air_polluten.*
+import kotlinx.android.synthetic.main.frament_air_polluten.*
 import kotlinx.android.synthetic.main.recycler_row_air_polluten.view.*
 
 
